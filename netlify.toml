@@ -1,3 +1,6 @@
+# This file must sit next to package.json (repo root = Client Sites/Jonathan).
+# Do not set a "base" directory unless the Astro app lives in a subfolder.
+
 [build]
   command = "npm run build"
   publish = "dist"

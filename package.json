@@ -1,10 +1,7 @@
 {
-  "name": "jonathan-zalzman-site",
+  "name": "site",
   "type": "module",
   "version": "0.0.1",
-  "engines": {
-    "node": "^20.0.0 || ^22.0.0"
-  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

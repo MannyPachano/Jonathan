@@ -1,0 +1,24 @@
+{
+	"name": "Jonathan Zalzman — Guitar Lessons",
+	"short_name": "JZ Lessons",
+	"description": "Private guitar, bass & ukulele lessons in Suwanee, GA",
+	"icons": [
+		{
+			"src": "/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		}
+	],
+	"theme_color": "#0E0B14",
+	"background_color": "#0E0B14",
+	"display": "browser",
+	"start_url": "/",
+	"scope": "/"
+}

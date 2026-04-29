@@ -2,19 +2,24 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 
-import "@fontsource/anton";
-import "@fontsource-variable/bricolage-grotesque/opsz.css";
-import "@fontsource/jetbrains-mono/400.css";
-import "@fontsource/jetbrains-mono/500.css";
-import "@fontsource/jetbrains-mono/700.css";
+/* Latin subsets only → fewer / smaller font files vs full family CSS (big TBT/LCP win). */
+import "@fontsource/anton/latin-400.css";
+import "../styles/bricolage-latin-wght.css";
+import "@fontsource/jetbrains-mono/latin-400.css";
+import "@fontsource/jetbrains-mono/latin-500.css";
+import "@fontsource/jetbrains-mono/latin-700.css";
+
+import "../styles/site.css";
 
 interface Props {
 	title: string;
 	description: string;
 	nav?: "home" | "about" | "teach" | "lessons" | "faq";
+	/** Preload the LCP image (e.g. hero on home) — must match a URL the <picture> will request. */
+	lcpImage?: { href: string; type?: string };
 }
 
-const { title, description, nav = "home" } = Astro.props;
+const { title, description, nav = "home", lcpImage } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,13 +29,33 @@ const { title, description, nav = "home" } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<meta name="theme-color" content="#0E0B14" />
 
-		<link rel="stylesheet" href="/css/site.css" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+
+		{
+			lcpImage && (
+				<link
+					rel="preload"
+					as="image"
+					href={lcpImage.href}
+					type={lcpImage.type ?? "image/avif"}
+					fetchpriority="high"
+				/>
+			)
+		}
 	</head>
 	<body>
+		<a class="skip-link" href="#main">Skip to content</a>
 		<Nav current={nav} />
-		<slot />
+		<main id="main">
+			<slot />
+		</main>
 		<Footer />
-		<script is:inline src="/js/site.js"></script>
+		<script defer src="/js/site.js"></script>
 	</body>
 </html>

@@ -1,16 +1,26 @@
 ---
+import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ResponsivePicture from "../components/ResponsivePicture.astro";
 import imgStage from "../assets/jonathan-stage-green.jpg";
 import imgPortrait from "../assets/jonathan-portrait.jpg";
 import imgVenue from "../assets/jonathan-venue-teal.jpg";
 import imgBand from "../assets/free-hat-band.jpg";
+
+/* Same params as one branch of hero <Picture> so preload matches a real candidate (mobile ~800px). */
+const heroLcpAvif = await getImage({
+	src: imgStage,
+	width: 800,
+	format: "avif",
+	quality: 80,
+});
 ---
 
 <BaseLayout
 	title='Jonathan Zalzman — Guitar Lessons in Suwanee, GA'
 	description="Private guitar, bass, and ukulele lessons in Suwanee, GA with Jonathan Zalzman — leader of Atlanta's Free Hat, lead guitarist of Cadillac Rainbows. All ages, all styles. In-person & online."
 	nav='home'
+	lcpImage={{ href: heroLcpAvif.src, type: "image/avif" }}
 >
 <!-- ===================== HERO ===================== -->
 <section class="hero">
@@ -55,6 +65,7 @@ import imgBand from "../assets/free-hat-band.jpg";
           src={imgStage}
           alt="Jonathan Zalzman performing live on guitar"
           sizes="(max-width: 980px) 100vw, min(640px, 48vw)"
+          widths={[400, 640, 800, 1024, 1280]}
           loading="eager"
           fetchpriority="high"
           decoding="async"
@@ -122,6 +133,8 @@ import imgBand from "../assets/free-hat-band.jpg";
           src={imgPortrait}
           alt="Portrait of Jonathan Zalzman"
           sizes="(max-width: 780px) 100vw, (max-width: 1100px) 50vw, 400px"
+          widths={[400, 640, 800, 1024]}
+          quality={68}
           loading="lazy"
           decoding="async"
         />

@@ -1,0 +1,483 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ResponsivePicture from "../components/ResponsivePicture.astro";
+import imgStage from "../assets/jonathan-stage-green.jpg";
+import imgPortrait from "../assets/jonathan-portrait.jpg";
+import imgVenue from "../assets/jonathan-venue-teal.jpg";
+import imgBand from "../assets/free-hat-band.jpg";
+---
+
+<BaseLayout
+	title='Jonathan Zalzman — Guitar Lessons in Suwanee, GA'
+	description="Private guitar, bass, and ukulele lessons in Suwanee, GA with Jonathan Zalzman — leader of Atlanta's Free Hat, lead guitarist of Cadillac Rainbows. All ages, all styles. In-person & online."
+	nav='home'
+>
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow rise d-1">
+        <span class="bar"></span>
+        Private Guitar · Bass · Ukulele · Suwanee, GA
+      </div>
+
+      <h1 class="h1">
+        <span class="l1 rise d-2">Learn Guitar</span>
+        <span class="l2 rise d-3">From a Working</span>
+        <span class="l3 rise d-4"><span class="underline-strike">Musician.</span></span>
+      </h1>
+
+      <p class="h-sub rise d-5">
+        I'm Jonathan — guitarist for Atlanta's <b>Free Hat</b> and lead guitarist for Phish-tribute <b>Cadillac Rainbows</b>. I've been gigging the Southeast for a decade and teaching for over five years. Whether you're picking up a guitar for the first time or chasing a sound you can't quite get yet, I'll help you find it.
+      </p>
+
+      <div class="cta-row rise d-6">
+        <a href="/lessons#book" class="btn btn-primary">
+          Book a Free Trial Lesson <span class="arrow">→</span>
+        </a>
+        <a href="/about" class="btn btn-ghost">
+          Meet Jonathan
+        </a>
+      </div>
+
+      <div class="trust rise d-6">
+        <span>Ages 6+</span>
+        <span>In-Person &amp; Online</span>
+        <span>All Levels</span>
+        <span>Beginner to Advanced</span>
+      </div>
+    </div>
+
+    <!-- right column: stage card with hero image -->
+    <aside class="stage-card rise d-4">
+      <div class="sc-photo">
+        <ResponsivePicture
+          src={imgStage}
+          alt="Jonathan Zalzman performing live on guitar"
+          sizes="(max-width: 980px) 100vw, min(640px, 48vw)"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="sc-photo-overlay">
+          <div class="sc-live"><span class="blink"></span> Now Booking</div>
+        </div>
+      </div>
+
+      <div class="sc-header">
+        <div>
+          <div class="sc-label">// Side A · Now Teaching</div>
+          <div class="sc-title">Tonight's Setlist</div>
+        </div>
+      </div>
+
+      <ul class="tracklist">
+        <li><span class="num">A1</span><span class="name">Rock &amp; Blues Fundamentals</span><span class="meta">Beginner</span></li>
+        <li><span class="num">A2</span><span class="name">Funk Rhythm &amp; Groove</span><span class="meta">All Levels</span></li>
+        <li><span class="num">A3</span><span class="name">Lead &amp; Improvisation</span><span class="meta">Inter</span></li>
+        <li><span class="num">B1</span><span class="name">Jazz Fusion &amp; Theory</span><span class="meta">Adv</span></li>
+        <li><span class="num">B2</span><span class="name">Progressive &amp; Shred Technique</span><span class="meta">Adv</span></li>
+        <li><span class="num">B3</span><span class="name">Songwriting &amp; Composition</span><span class="meta">All Levels</span></li>
+      </ul>
+
+      <div class="sc-foot">
+        <span>Recorded live · Suwanee GA</span>
+        <span class="key">$159/mo</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Free Hat <span class="star">✦</span> Cadillac Rainbows <span class="star">✦</span> BadAsh Allstar Team <span class="star">✦</span> 10+ Years Atlanta Stages <span class="star">✦</span> 3 Albums on Spotify <span class="star">✦</span></span>
+    <span>Free Hat <span class="star">✦</span> Cadillac Rainbows <span class="star">✦</span> BadAsh Allstar Team <span class="star">✦</span> 10+ Years Atlanta Stages <span class="star">✦</span> 3 Albums on Spotify <span class="star">✦</span></span>
+  </div>
+</div>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="section bio" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow"><span class="num">01</span> About Jonathan</div>
+        <h2 class="section-title">A Guitar Lesson From the Stage.</h2>
+      </div>
+    </div>
+
+    <div class="bio-grid">
+      <div class="bio-copy">
+        <p>I picked up a guitar at <em>thirteen</em>, the night I saw Buckethead at the Masquerade in Atlanta — and I haven't put it down since.</p>
+
+        <p>That show changed the way I thought about music. The years since have been a chase: shred, funk, jazz fusion, progressive rock, metal — pulling everything I love into a sound that's mine. I lead a Progressive Jamtronica project called <b>Free Hat</b>, formed in Atlanta in 2016. I'm the lead guitarist for the Phish tribute band <b>Cadillac Rainbows</b>, and I sit in regularly with the jam collective <b>BadAsh Allstar Team</b>.</p>
+
+        <p>I've been teaching guitar, bass, and ukulele for over five years. My students range from absolute beginners (some as young as six) to adults coming back to an instrument they put down twenty years ago, to teens chasing a specific sound and wanting a real plan to get there. I tailor every lesson — there's no "method book and good luck" here.</p>
+
+        <p>What I want most is to pass on the spark — the same spark a Buckethead show lit in me. If you bring the curiosity, I'll bring the roadmap.</p>
+      </div>
+
+      <figure class="bio-portrait">
+        <ResponsivePicture
+          src={imgPortrait}
+          alt="Portrait of Jonathan Zalzman"
+          sizes="(max-width: 780px) 100vw, (max-width: 1100px) 50vw, 400px"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>
+          <span class="cap-mark">JZ</span>
+          <span class="cap-text">Live · Atlanta, GA</span>
+        </figcaption>
+      </figure>
+
+      <aside class="bio-credentials">
+        <h3>// Credentials &amp; Cred</h3>
+        <ul class="cred-list">
+          <li>
+            <span class="yr">2016—</span>
+            <span class="what">
+              <b>Free Hat</b>
+              <span>Founder · Lead Guitar · 3 albums, dozens of Atlanta venues</span>
+            </span>
+          </li>
+          <li>
+            <span class="yr">Active</span>
+            <span class="what">
+              <b>Cadillac Rainbows</b>
+              <span>Lead Guitar · Phish Tribute</span>
+            </span>
+          </li>
+          <li>
+            <span class="yr">Active</span>
+            <span class="what">
+              <b>BadAsh Allstar Team</b>
+              <span>Featured Performer · Atlanta Jam Collective</span>
+            </span>
+          </li>
+          <li>
+            <span class="yr">5+ yrs</span>
+            <span class="what">
+              <b>Private Instruction</b>
+              <span>Guitar, Bass, Ukulele · All Ages 6+</span>
+            </span>
+          </li>
+          <li>
+            <span class="yr">Stages</span>
+            <span class="what">
+              <b>Pontoon Brewing · Smith's Olde Bar · Sweetwater · Aisle 5 · MadLife</b>
+              <span>And every porch in between.</span>
+            </span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STYLES TAUGHT ===================== -->
+<section class="section styles" id="styles">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow"><span class="num">02</span> What I Teach</div>
+        <h2 class="section-title">Bring Your Sound. I'll Help You Find It.</h2>
+      </div>
+    </div>
+
+    <div class="styles-grid">
+      <div class="style-card">
+        <span class="sc-no">001</span>
+        <h4>Rock &amp;<br>Blues</h4>
+        <p>Riff-based foundations, classic rock, blues bends, pentatonic vocabulary, the songs you've always wanted to play.</p>
+        <span class="tag">Beginner — Advanced</span>
+      </div>
+      <div class="style-card">
+        <span class="sc-no">002</span>
+        <h4>Funk &amp;<br>Groove</h4>
+        <p>Rhythm guitar that actually grooves. Sixteenth-note feel, muting, comping, finding the pocket.</p>
+        <span class="tag">All Levels</span>
+      </div>
+      <div class="style-card">
+        <span class="sc-no">003</span>
+        <h4>Jazz &amp;<br>Fusion</h4>
+        <p>Chord-melody, improvisation over changes, modal playing, the language of the greats — without the gatekeeping.</p>
+        <span class="tag">Intermediate — Advanced</span>
+      </div>
+      <div class="style-card">
+        <span class="sc-no">004</span>
+        <h4>Prog &amp;<br>Shred</h4>
+        <p>Alternate picking, sweeping, tapping, odd time signatures. The technique to play anything you imagine.</p>
+        <span class="tag">Intermediate — Advanced</span>
+      </div>
+      <div class="style-card">
+        <span class="sc-no">005</span>
+        <h4>Metal</h4>
+        <p>Tight rhythm chops, gallop picking, drop tunings, riff writing. From Metallica to Polyphia and beyond.</p>
+        <span class="tag">All Levels</span>
+      </div>
+      <div class="style-card">
+        <span class="sc-no">006</span>
+        <h4>Theory &amp;<br>Ear Training</h4>
+        <p>The "why" behind the music. Build the kind of ear that lets you learn songs by feel.</p>
+        <span class="tag">All Levels</span>
+      </div>
+      <div class="style-card">
+        <span class="sc-no">007</span>
+        <h4>Bass &amp;<br>Ukulele</h4>
+        <p>Not a guitar player? No problem. Bass groove fundamentals or laid-back ukulele — same studio, same standards.</p>
+        <span class="tag">All Ages</span>
+      </div>
+      <div class="style-card">
+        <span class="sc-no">008</span>
+        <h4>Songwriting</h4>
+        <p>Turn ideas into actual songs. Structure, voicing, arrangement, demo-ing your own material.</p>
+        <span class="tag">All Levels</span>
+      </div>
+      <div class="style-card">
+        <span class="sc-no">009</span>
+        <h4>Improvisation</h4>
+        <p>The jam-band approach: listening, conversation, taking risks. Soloing as a language, not a shape.</p>
+        <span class="tag">Intermediate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ATMOSPHERIC DIVIDER ===================== -->
+<section class="divider-img" aria-hidden="true">
+  <ResponsivePicture
+    src={imgVenue}
+    alt=""
+    sizes="100vw"
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="div-overlay">
+    <p class="div-quote">
+      <span class="qmark">"</span>The stuff I teach is the stuff I do<br>every weekend on stage.<span class="qmark q-end">"</span>
+    </p>
+    <p class="div-attr">— Jonathan</p>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section how">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow"><span class="num">03</span> How It Works</div>
+        <h2 class="section-title">Simple. Flexible. No Tricks.</h2>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-no">01</span>
+        <h4>Free Trial Lesson</h4>
+        <p>Reach out and we'll set up a free first meeting. We'll talk about what you want to play, your goals, and whether we're a good fit. No pressure, no commitment.</p>
+      </div>
+      <div class="step">
+        <span class="step-no">02</span>
+        <h4>Build a Plan</h4>
+        <p>Every student gets a custom plan based on their level, the music they actually want to play, and the time they have to practice. We start where <em>you</em> are.</p>
+      </div>
+      <div class="step">
+        <span class="step-no">03</span>
+        <h4>Show Up &amp; Play</h4>
+        <p>Weekly 30-minute lessons in Suwanee or online via video. Easy scheduling, video and audio resources between lessons, and unlimited makeups with 24-hour notice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING ===================== -->
+<section class="section pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow"><span class="num">04</span> Lesson Plans</div>
+        <h2 class="section-title">Pay for the Lesson. Not the Frills.</h2>
+      </div>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-label">// First Lesson</div>
+        <div class="price-amount"><sup>$</sup>0<span class="per"> · trial</span></div>
+        <p class="price-desc">Risk-free 30-minute meeting to see if we're a fit.</p>
+        <ul class="price-features">
+          <li>Discuss your goals &amp; favorite music</li>
+          <li>Assess your current level</li>
+          <li>Get a custom roadmap</li>
+          <li>Zero commitment afterward</li>
+        </ul>
+        <a href="/lessons#book" class="btn btn-ghost">Book Trial →</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-label">// Weekly Lessons</div>
+        <div class="price-amount"><sup>$</sup>159<span class="per"> /month</span></div>
+        <p class="price-desc">Weekly 30-minute lesson. The standard plan most students choose.</p>
+        <ul class="price-features">
+          <li>4 weekly lessons per month</li>
+          <li>In-person in Suwanee or online</li>
+          <li>Video, audio &amp; sheet music between lessons</li>
+          <li>Unlimited makeups (24hr notice)</li>
+          <li>Quarterly student performance opportunities</li>
+        </ul>
+        <a href="/lessons#book" class="btn btn-primary">Sign Up →</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-label">// À La Carte</div>
+        <div class="price-amount"><sup>$</sup>40<span class="per"> /lesson</span></div>
+        <p class="price-desc">One-off 30-minute lesson. For tune-ups, prep, or trying it out.</p>
+        <ul class="price-features">
+          <li>Single 30-minute session</li>
+          <li>No monthly commitment</li>
+          <li>Great for audition prep</li>
+          <li>Pay as you go</li>
+        </ul>
+        <a href="/lessons#book" class="btn btn-ghost">Book One →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="section quotes">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow"><span class="num">05</span> Student Reviews</div>
+        <h2 class="section-title">From the Folks Who Showed Up.</h2>
+      </div>
+    </div>
+
+    <div class="quotes-grid">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>"Jonathan is patient and clearly knows his stuff. My son started barely able to hold a pick and now he's playing actual songs he picked himself. Worth every dollar."</p>
+        <div class="quote-attr">
+          <b>Parent of a 12-year-old student</b>
+          Suwanee, GA
+        </div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>"I came in wanting to play in a jam-band style and Jonathan got it immediately. He doesn't push his taste on you — he meets you where you are and pushes you forward. Best teacher I've had."</p>
+        <div class="quote-attr">
+          <b>Adult Student · 2 years</b>
+          Online Lessons
+        </div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>"I'm a metal kid and Jonathan helped me with technique I'd been getting wrong for years. He's also just a sick player so it's motivating to watch him demo stuff in lessons."</p>
+        <div class="quote-attr">
+          <b>Teen Student · 16</b>
+          Buford, GA
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BAND / FREE HAT ===================== -->
+<section class="section band">
+  <div class="wrap">
+    <div class="band-grid">
+      <figure class="band-photo">
+        <ResponsivePicture
+          src={imgBand}
+          alt="Free Hat band photo — Jonathan Zalzman second from left"
+          sizes="(max-width: 880px) 100vw, min(720px, 58vw)"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="band-copy">
+        <div class="section-eyebrow"><span class="num">★</span> Hear Me Play</div>
+        <h2 class="band-title">I Don't Just <em>Teach</em> Guitar.<br>I Play It For a Living.</h2>
+        <p class="band-text">Want to know what your teacher actually sounds like? Listen to <b>Free Hat</b> — three full-length releases on Spotify, dozens of live videos on YouTube, a decade of Atlanta stages. The stuff I teach is the stuff I do every weekend.</p>
+        <div class="band-links">
+          <a href="https://open.spotify.com/artist/4J65orwYw2On9M42WaKGHu" target="_blank" rel="noopener" class="band-link">
+            <span class="bl-icon">▶</span>
+            <span class="bl-text"><b>Spotify</b><span>Stream the catalog</span></span>
+          </a>
+          <a href="https://www.youtube.com/@freehatmusic" target="_blank" rel="noopener" class="band-link">
+            <span class="bl-icon">▶</span>
+            <span class="bl-text"><b>YouTube</b><span>Watch live performances</span></span>
+          </a>
+          <a href="https://www.freehatmusic.com/" target="_blank" rel="noopener" class="band-link">
+            <span class="bl-icon">↗</span>
+            <span class="bl-text"><b>Free Hat Official</b><span>Tour dates &amp; news</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow"><span class="num">06</span> Common Questions</div>
+        <h2 class="section-title">The FAQ.</h2>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">My kid has never touched a guitar. Are they too young / too new? <span class="toggle">+</span></button>
+        <div class="faq-a"><p>Lessons are open to anyone age 6 and up. Every brand-new student gets a foundation track that introduces holding the instrument, basic chords, and reading enough to play songs they already love within the first few weeks. There's no prerequisite beyond showing up.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">I haven't played in 20 years. Can I still take lessons? <span class="toggle">+</span></button>
+        <div class="faq-a"><p>Yes — adult comeback students are some of my favorites. We'll start by figuring out what you used to know and what you actually want to be able to play, and build a plan from there. You'll be surprised how fast it comes back.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the difference between in-person and online? <span class="toggle">+</span></button>
+        <div class="faq-a"><p>The lesson itself is essentially identical — same plan, same materials, same teacher. In-person works great if you're in the Suwanee, Sugar Hill, Buford, Duluth, or John's Creek area. Online works great if you're outside that radius, traveling often, or just prefer it. Many students do a mix.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I miss a lesson? <span class="toggle">+</span></button>
+        <div class="faq-a"><p>You get unlimited makeups as long as you give 24 hours notice. Life happens — kids get sick, work runs late, you have a hockey game. The scheduling system makes rebooking simple from your phone.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need my own guitar? What kind? <span class="toggle">+</span></button>
+        <div class="faq-a"><p>Yes, you'll need an instrument to practice on. For starters, an acoustic or electric guitar in any reasonable condition is fine — I can help you pick something inexpensive but workable if you don't have one yet. Don't buy gear before our first lesson; we can talk through it.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you teach bass and ukulele too? <span class="toggle">+</span></button>
+        <div class="faq-a"><p>Yes. Bass and ukulele are part of my regular instruction. Same rates, same approach.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can you really teach total beginners and advanced players? <span class="toggle">+</span></button>
+        <div class="faq-a"><p>Yes. Beginners need the right foundation — clean technique, a few honest songs, ear training — and that's exactly what I teach them. Advanced players come for specific things: alternate picking, jazz vocabulary, fusion phrasing, prog technique, getting unstuck. The level changes; the principle of meeting you where you are doesn't.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="final" id="book">
+  <div class="final-inner">
+    <div class="section-eyebrow" style="justify-content:center;color:var(--neon)">
+      <span class="num" style="background:var(--neon);color:var(--ink)">07</span>
+      Ready When You Are
+    </div>
+    <h2>Let's <em>Make</em> Some Noise.</h2>
+    <p>The first lesson is free, and there's no commitment after. Send a message and we'll find a time that works.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a href="mailto:lessons@jonathanzalzman.com" class="btn btn-primary">Email Jonathan <span class="arrow">→</span></a>
+      <a href="tel:7708317936" class="btn btn-ghost">Call (770) 831-7936</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+</BaseLayout>

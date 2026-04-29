@@ -1,0 +1,228 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ResponsivePicture from "../components/ResponsivePicture.astro";
+import imgPortrait from "../assets/jonathan-portrait.jpg";
+---
+
+<BaseLayout
+	title='About Jonathan Zalzman — Atlanta Guitarist &amp; Suwanee Guitar Teacher'
+	description="Meet Jonathan Zalzman — leader of Atlanta's Free Hat, lead guitarist for Cadillac Rainbows. Decade of stages, five years of teaching guitar, bass, and ukulele in Suwanee, GA."
+	nav='about'
+>
+<!-- ===================== PAGE HERO ===================== -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="crumbs">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <span>About</span>
+    </div>
+    <div class="page-num"><span class="ix">01</span> About Jonathan</div>
+    <h1>The Long Way<br><em>Around</em> a <span class="accent">Guitar.</span></h1>
+    <p class="page-lede">A decade of Atlanta stages. Three full-length releases. Five years of teaching. The short version is on the homepage. <b>Here's the long one.</b></p>
+  </div>
+</section>
+
+<!-- ===================== LEAD STORY ===================== -->
+<section class="page-section">
+  <div class="wrap">
+    <div class="about-lead">
+      <div class="about-lead-copy">
+        <p class="pull">It started at <em>thirteen</em>, in a sweaty room at the Masquerade in Atlanta, watching Buckethead make a guitar do things I didn't know guitars could do.</p>
+        <p>I went home, picked up a six-string, and never put it down. I'm not exaggerating — that night reset the way I thought about music. It made me realize the instrument itself was the easy part. The hard, beautiful part was finding a voice on it.</p>
+        <p>Since then, my whole life has been a chase: shred technique, funk feel, jazz fusion vocabulary, progressive rock arrangement, metal aggression. Not because I'm a genre tourist — but because all of it is <i>music</i>, and the more languages you speak, the more you have to say.</p>
+        <p>Today I'm based in the Atlanta area. I lead the Progressive Jamtronica band <b>Free Hat</b>, formed in 2016, and we've been melting faces at venues across the Southeast ever since. I'm the lead guitarist for the Phish tribute band <b>Cadillac Rainbows</b>, and I sit in regularly with the Atlanta jam collective <b>BadAsh Allstar Team</b>. Three albums on Spotify, dozens of live videos on YouTube, and a venue calendar that keeps me on stage most weekends.</p>
+        <p>And — for the last five-plus years — I've been teaching guitar, bass, and ukulele in Suwanee.</p>
+      </div>
+      <figure class="about-side-img">
+        <ResponsivePicture
+          src={imgPortrait}
+          alt="Jonathan Zalzman portrait"
+          sizes="(max-width: 880px) 100vw, min(520px, 48vw)"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>Live · Atlanta GA</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TIMELINE (DARK) ===================== -->
+<section class="page-section dark">
+  <div class="wrap">
+    <div class="section-eyebrow"><span class="num" style="background:var(--ember);color:var(--bone)">★</span> The Highlights</div>
+    <h2 class="section-title" style="margin-bottom:20px">The Path Here.</h2>
+    <p style="max-width:60ch;color:rgba(244,239,230,.75);font-size:17px;margin:0 0 12px">A few of the milestones that got me from a kid at his first Buckethead show to the guy in front of you now.</p>
+
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-year">~2007</div>
+        <div class="tl-event">
+          <h4>The Spark</h4>
+          <p>Saw Buckethead live at the Masquerade, age 13. Walked out a guitarist. Never looked back.</p>
+          <span class="tag">Origin</span>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2010s</div>
+        <div class="tl-event">
+          <h4>The Atlanta Years</h4>
+          <p>Cut my teeth on the Atlanta circuit — house shows, dive bars, festival side stages. Met the players who'd become bandmates and mentors.</p>
+          <span class="tag">Apprenticeship</span>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2016</div>
+        <div class="tl-event">
+          <h4>Free Hat Formed</h4>
+          <p>Co-founded Free Hat — a Progressive Jamtronica project in Atlanta. The band's been "exploring musical frontiers" ever since. Three studio/live releases, dozens of headlining and supporting shows.</p>
+          <span class="tag">My Main Project</span>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2019</div>
+        <div class="tl-event">
+          <h4>First Live Album</h4>
+          <p>Released <i>Get Wet: Live at Smith's Olde Bar</i>. First full document of what the band sounds like at peak — a shredder, a funk record, and a jam-band record all at once.</p>
+          <span class="tag">First Album</span>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2020</div>
+        <div class="tl-event">
+          <h4>Started Teaching</h4>
+          <p>Began teaching guitar, bass, and ukulele privately. First students were friends and friends-of-friends. Word got around.</p>
+          <span class="tag">Teaching</span>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2021</div>
+        <div class="tl-event">
+          <h4>Free Hat EP</h4>
+          <p>Released the self-titled studio EP. Tighter, more produced, bigger reach. Free Hat made it onto Spotify, Apple Music, and every other streaming service that mattered.</p>
+          <span class="tag">Studio Release</span>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">Current</div>
+        <div class="tl-event">
+          <h4>Cadillac Rainbows + BadAsh</h4>
+          <p>Picked up the lead guitar chair for the Phish tribute Cadillac Rainbows. Became a regular sit-in with Atlanta jam collective BadAsh Allstar Team. Different rooms, different vibes — same player.</p>
+          <span class="tag">Side Projects</span>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">2025</div>
+        <div class="tl-event">
+          <h4>Live at Pontoon Brewing</h4>
+          <p>Released <i>Free Hat Live at Pontoon Brewing 4.19.25</i> — a full set captured in front of one of our favorite hometown crowds. Now streaming everywhere.</p>
+          <span class="tag">Latest Release</span>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-year">Today</div>
+        <div class="tl-event">
+          <h4>Teaching in Suwanee</h4>
+          <p>Splitting my week between gigs and lessons. Always taking new students — beginners, comeback adults, advancing teens, anyone willing to show up.</p>
+          <span class="tag">Now</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEACHING PHILOSOPHY ===================== -->
+<section class="page-section">
+  <div class="wrap">
+    <div class="section-eyebrow" style="color:var(--ember-deep)"><span class="num" style="background:var(--ember-deep);color:var(--bone)">02</span> Teaching Philosophy</div>
+    <h2 class="section-title">How I Teach.</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--ink);margin-top:40px" class="philo-grid">
+      <div style="padding:36px 28px;border-right:2px solid var(--ink)">
+        <div style="font-family:var(--display);font-size:64px;line-height:1;color:var(--ember-deep);margin-bottom:14px">01</div>
+        <h4 style="font-family:var(--display);font-size:24px;letter-spacing:.02em;text-transform:uppercase;margin:0 0 10px">Meet You Where You Are</h4>
+        <p style="margin:0;font-size:15px;line-height:1.55;color:rgba(14,11,20,.75)">No two students start the same place. The first lesson is mostly listening — what do you want to play, what have you tried, what got you stuck. From there, the plan is yours.</p>
+      </div>
+      <div style="padding:36px 28px;border-right:2px solid var(--ink)">
+        <div style="font-family:var(--display);font-size:64px;line-height:1;color:var(--ember-deep);margin-bottom:14px">02</div>
+        <h4 style="font-family:var(--display);font-size:24px;letter-spacing:.02em;text-transform:uppercase;margin:0 0 10px">Songs You Actually Like</h4>
+        <p style="margin:0;font-size:15px;line-height:1.55;color:rgba(14,11,20,.75)">The fastest way to make someone love an instrument is to put music they care about in their hands. Curriculum gets built around the songs and styles that matter to you — not the other way around.</p>
+      </div>
+      <div style="padding:36px 28px">
+        <div style="font-family:var(--display);font-size:64px;line-height:1;color:var(--ember-deep);margin-bottom:14px">03</div>
+        <h4 style="font-family:var(--display);font-size:24px;letter-spacing:.02em;text-transform:uppercase;margin:0 0 10px">Technique That Lasts</h4>
+        <p style="margin:0;font-size:15px;line-height:1.55;color:rgba(14,11,20,.75)">Songs are the carrot. Solid fundamentals are the structure underneath. I don't shortcut technique — bad habits are way harder to undo than to never form. We do the boring stuff, briefly, on purpose.</p>
+      </div>
+    </div>
+
+    <style>
+      @media (max-width: 880px){
+        .philo-grid{grid-template-columns:1fr !important}
+        .philo-grid > div{border-right:0 !important;border-bottom:2px solid var(--ink)}
+        .philo-grid > div:last-child{border-bottom:0}
+      }
+    </style>
+  </div>
+</section>
+
+<!-- ===================== INFLUENCES + GEAR (TINTED DARK) ===================== -->
+<section class="page-section tinted">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-block">
+        <h3>// Influences</h3>
+        <h2>The Players Behind My Playing.</h2>
+        <p>Every lesson is colored by who's been in my ears. If you want to know what to expect from my playing — or want a study list of your own — start here:</p>
+        <div class="pill-grid">
+          <span class="pill">Buckethead</span>
+          <span class="pill">Phish</span>
+          <span class="pill">Trey Anastasio</span>
+          <span class="pill">John Scofield</span>
+          <span class="pill">Frank Zappa</span>
+          <span class="pill">Allan Holdsworth</span>
+          <span class="pill">Pat Metheny</span>
+          <span class="pill">Steve Vai</span>
+          <span class="pill">Guthrie Govan</span>
+          <span class="pill">Plini</span>
+          <span class="pill">Polyphia</span>
+          <span class="pill">Snarky Puppy</span>
+          <span class="pill">Vulfpeck</span>
+          <span class="pill">Umphrey's McGee</span>
+        </div>
+      </div>
+
+      <div class="split-block">
+        <h3>// Gear &amp; Setup</h3>
+        <h2>The Tools of the Trade.</h2>
+        <p>I'm not a gear snob — but yes, I'll probably geek out with you about pedals if you want to. The short version of what I play and what I'd recommend students consider:</p>
+        <div class="pill-grid">
+          <span class="pill">Ibanez electrics</span>
+          <span class="pill">Fender amps</span>
+          <span class="pill">Strymon FX</span>
+          <span class="pill">JHS pedals</span>
+          <span class="pill">Boss looper</span>
+          <span class="pill">Wah</span>
+          <span class="pill">Fuzz</span>
+          <span class="pill">Tube screamer</span>
+          <span class="pill">Decent acoustic</span>
+        </div>
+        <p style="margin-top:24px"><b>For students:</b> don't buy gear before our first lesson — we'll talk through what makes sense for what you want to play. There's a workable beginner setup at every budget.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INLINE CTA ===================== -->
+<section class="page-section">
+  <div class="wrap">
+    <div class="inline-cta">
+      <div>
+        <h3>That's My Story. What's Yours?</h3>
+        <p>The first lesson is free. We'll talk about what you want to play, where you are now, and where you want to go.</p>
+      </div>
+      <a href="/lessons#book" class="btn btn-primary" style="white-space:nowrap">Book a Free Trial <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+</BaseLayout>

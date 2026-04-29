@@ -1,0 +1,51 @@
+---
+import { Picture } from "astro:assets";
+import type { LocalImageProps } from "astro:assets";
+
+/**
+ * Responsive <picture> with AVIF + WebP sources, original format fallback,
+ * and width-based srcset for appropriate sizing per breakpoints.
+ */
+type Props = Pick<
+	LocalImageProps,
+	"src" | "alt" | "loading" | "decoding" | "class" | "width" | "height" | "quality"
+> & {
+	sizes: string;
+	widths?: number[];
+	pictureClass?: string;
+	fetchpriority?: "high" | "low" | "auto";
+};
+
+const defaultWidths = [400, 640, 800, 1024, 1280, 1600];
+
+const {
+	src,
+	alt,
+	sizes,
+	widths = defaultWidths,
+	quality = 80,
+	pictureClass,
+	class: className,
+	loading,
+	decoding = "async",
+	fetchpriority,
+	width,
+	height,
+} = Astro.props;
+---
+
+<Picture
+	src={src}
+	alt={alt}
+	formats={["avif", "webp"]}
+	widths={widths}
+	sizes={sizes}
+	quality={quality}
+	pictureAttributes={pictureClass ? { class: pictureClass } : {}}
+	class={className}
+	loading={loading}
+	decoding={decoding}
+	fetchpriority={fetchpriority}
+	width={width}
+	height={height}
+/>

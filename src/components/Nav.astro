@@ -1,0 +1,28 @@
+---
+type NavKey = "home" | "about" | "teach" | "lessons" | "faq";
+
+interface Props {
+	current?: NavKey;
+}
+
+const { current = "home" } = Astro.props;
+
+const ember = "color:var(--ember)";
+
+const active = (key: NavKey) =>
+	current === key ? ember : undefined;
+---
+
+<nav class="nav">
+	<a href="/" class="nav-mark">
+		<span class="dot"></span>
+		JONATHAN&nbsp;ZALZMAN
+	</a>
+	<div class="nav-links">
+		<a href="/about" style={active("about")}>About</a>
+		<a href="/teach" style={active("teach")}>What I Teach</a>
+		<a href="/lessons" style={active("lessons")}>Lessons</a>
+		<a href="/faq" style={active("faq")}>FAQ</a>
+		<a href="/lessons#book" class="nav-cta">Book a Trial →</a>
+	</div>
+</nav>

@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+
+# logs / OS
+npm-debug.log*
+.DS_Store
+
+# env
+.env
+.env.*
+
+# astro
+.astro/
+
+# netlify
+.netlify/

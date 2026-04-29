@@ -7,3 +7,16 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Global security headers (SSL/HSTS is already handled by Netlify for HTTPS).
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    # XSS mitigation: same-origin by default. style-src allows 'unsafe-inline' because
+    # Astro inlines the bundled CSS in <style> tags (no inline scripts on this site).
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; frame-src 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; manifest-src 'self'; media-src 'self'; upgrade-insecure-requests"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"

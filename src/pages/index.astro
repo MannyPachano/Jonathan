@@ -58,8 +58,8 @@ const heroLcpAvif = await getImage({
       </div>
     </div>
 
-    <!-- right column: stage card with hero image -->
-    <aside class="stage-card rise d-4">
+    <!-- right column: stage card with hero image (photo outside .rise so LCP image isn't grouped with staggered motion) -->
+    <aside class="stage-card">
       <div class="sc-photo">
         <ResponsivePicture
           src={imgStage}
@@ -75,25 +75,27 @@ const heroLcpAvif = await getImage({
         </div>
       </div>
 
-      <div class="sc-header">
-        <div>
-          <div class="sc-label">// Side A · Now Teaching</div>
-          <div class="sc-title">Tonight's Setlist</div>
+      <div class="rise d-4">
+        <div class="sc-header">
+          <div>
+            <div class="sc-label">// Side A · Now Teaching</div>
+            <div class="sc-title">Tonight's Setlist</div>
+          </div>
         </div>
-      </div>
 
-      <ul class="tracklist">
-        <li><span class="num">A1</span><span class="name">Rock &amp; Blues Fundamentals</span><span class="meta">Beginner</span></li>
-        <li><span class="num">A2</span><span class="name">Funk Rhythm &amp; Groove</span><span class="meta">All Levels</span></li>
-        <li><span class="num">A3</span><span class="name">Lead &amp; Improvisation</span><span class="meta">Inter</span></li>
-        <li><span class="num">B1</span><span class="name">Jazz Fusion &amp; Theory</span><span class="meta">Adv</span></li>
-        <li><span class="num">B2</span><span class="name">Progressive &amp; Shred Technique</span><span class="meta">Adv</span></li>
-        <li><span class="num">B3</span><span class="name">Songwriting &amp; Composition</span><span class="meta">All Levels</span></li>
-      </ul>
+        <ul class="tracklist">
+          <li><span class="num">A1</span><span class="name">Rock &amp; Blues Fundamentals</span><span class="meta">Beginner</span></li>
+          <li><span class="num">A2</span><span class="name">Funk Rhythm &amp; Groove</span><span class="meta">All Levels</span></li>
+          <li><span class="num">A3</span><span class="name">Lead &amp; Improvisation</span><span class="meta">Inter</span></li>
+          <li><span class="num">B1</span><span class="name">Jazz Fusion &amp; Theory</span><span class="meta">Adv</span></li>
+          <li><span class="num">B2</span><span class="name">Progressive &amp; Shred Technique</span><span class="meta">Adv</span></li>
+          <li><span class="num">B3</span><span class="name">Songwriting &amp; Composition</span><span class="meta">All Levels</span></li>
+        </ul>
 
-      <div class="sc-foot">
-        <span>Recorded live · Suwanee GA</span>
-        <span class="key">$159/mo</span>
+        <div class="sc-foot">
+          <span>Recorded live · Suwanee GA</span>
+          <span class="key">$159/mo</span>
+        </div>
       </div>
     </aside>
   </div>
@@ -134,7 +136,7 @@ const heroLcpAvif = await getImage({
           alt="Portrait of Jonathan Zalzman"
           sizes="(max-width: 780px) 100vw, (max-width: 1100px) 50vw, 400px"
           widths={[400, 640, 800, 1024]}
-          quality={68}
+          quality={55}
           loading="lazy"
           decoding="async"
         />
@@ -201,55 +203,55 @@ const heroLcpAvif = await getImage({
     <div class="styles-grid">
       <div class="style-card">
         <span class="sc-no">001</span>
-        <h4>Rock &amp;<br>Blues</h4>
+        <h3>Rock &amp;<br>Blues</h3>
         <p>Riff-based foundations, classic rock, blues bends, pentatonic vocabulary, the songs you've always wanted to play.</p>
         <span class="tag">Beginner — Advanced</span>
       </div>
       <div class="style-card">
         <span class="sc-no">002</span>
-        <h4>Funk &amp;<br>Groove</h4>
+        <h3>Funk &amp;<br>Groove</h3>
         <p>Rhythm guitar that actually grooves. Sixteenth-note feel, muting, comping, finding the pocket.</p>
         <span class="tag">All Levels</span>
       </div>
       <div class="style-card">
         <span class="sc-no">003</span>
-        <h4>Jazz &amp;<br>Fusion</h4>
+        <h3>Jazz &amp;<br>Fusion</h3>
         <p>Chord-melody, improvisation over changes, modal playing, the language of the greats — without the gatekeeping.</p>
         <span class="tag">Intermediate — Advanced</span>
       </div>
       <div class="style-card">
         <span class="sc-no">004</span>
-        <h4>Prog &amp;<br>Shred</h4>
+        <h3>Prog &amp;<br>Shred</h3>
         <p>Alternate picking, sweeping, tapping, odd time signatures. The technique to play anything you imagine.</p>
         <span class="tag">Intermediate — Advanced</span>
       </div>
       <div class="style-card">
         <span class="sc-no">005</span>
-        <h4>Metal</h4>
+        <h3>Metal</h3>
         <p>Tight rhythm chops, gallop picking, drop tunings, riff writing. From Metallica to Polyphia and beyond.</p>
         <span class="tag">All Levels</span>
       </div>
       <div class="style-card">
         <span class="sc-no">006</span>
-        <h4>Theory &amp;<br>Ear Training</h4>
+        <h3>Theory &amp;<br>Ear Training</h3>
         <p>The "why" behind the music. Build the kind of ear that lets you learn songs by feel.</p>
         <span class="tag">All Levels</span>
       </div>
       <div class="style-card">
         <span class="sc-no">007</span>
-        <h4>Bass &amp;<br>Ukulele</h4>
+        <h3>Bass &amp;<br>Ukulele</h3>
         <p>Not a guitar player? No problem. Bass groove fundamentals or laid-back ukulele — same studio, same standards.</p>
         <span class="tag">All Ages</span>
       </div>
       <div class="style-card">
         <span class="sc-no">008</span>
-        <h4>Songwriting</h4>
+        <h3>Songwriting</h3>
         <p>Turn ideas into actual songs. Structure, voicing, arrangement, demo-ing your own material.</p>
         <span class="tag">All Levels</span>
       </div>
       <div class="style-card">
         <span class="sc-no">009</span>
-        <h4>Improvisation</h4>
+        <h3>Improvisation</h3>
         <p>The jam-band approach: listening, conversation, taking risks. Soloing as a language, not a shape.</p>
         <span class="tag">Intermediate</span>
       </div>
@@ -287,17 +289,17 @@ const heroLcpAvif = await getImage({
     <div class="steps">
       <div class="step">
         <span class="step-no">01</span>
-        <h4>Free Trial Lesson</h4>
+        <h3>Free Trial Lesson</h3>
         <p>Reach out and we'll set up a free first meeting. We'll talk about what you want to play, your goals, and whether we're a good fit. No pressure, no commitment.</p>
       </div>
       <div class="step">
         <span class="step-no">02</span>
-        <h4>Build a Plan</h4>
+        <h3>Build a Plan</h3>
         <p>Every student gets a custom plan based on their level, the music they actually want to play, and the time they have to practice. We start where <em>you</em> are.</p>
       </div>
       <div class="step">
         <span class="step-no">03</span>
-        <h4>Show Up &amp; Play</h4>
+        <h3>Show Up &amp; Play</h3>
         <p>Weekly 30-minute lessons in Suwanee or online via video. Easy scheduling, video and audio resources between lessons, and unlimited makeups with 24-hour notice.</p>
       </div>
     </div>

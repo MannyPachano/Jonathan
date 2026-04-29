@@ -414,7 +414,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 }
 .style-card:hover{background:var(--ink)}
 .style-card .sc-no{font-family:var(--mono);font-size:11px;color:rgba(244,239,230,.4);letter-spacing:.1em}
-.style-card h4{
+.style-card h3{
   font-family:var(--display);font-size:34px;letter-spacing:.01em;line-height:.95;
   margin:0;text-transform:uppercase;
 }
@@ -423,9 +423,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   margin-top:auto;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--ember);
 }
-.style-card:nth-child(2) h4{color:var(--ember)}
-.style-card:nth-child(5) h4{color:var(--neon)}
-.style-card:nth-child(7) h4{color:var(--haze)}
+.style-card:nth-child(2) h3{color:var(--ember)}
+.style-card:nth-child(5) h3{color:var(--neon)}
+.style-card:nth-child(7) h3{color:var(--haze)}
 
 /* ============ ATMOSPHERIC DIVIDER ============ */
 .divider-img{
@@ -490,7 +490,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   font-family:var(--display);font-size:80px;line-height:1;color:var(--ember-deep);
   display:block;margin-bottom:14px;
 }
-.step h4{
+.step h3{
   font-family:var(--display);font-size:24px;letter-spacing:.02em;text-transform:uppercase;
   margin:0 0 10px;
 }
@@ -718,7 +718,10 @@ footer{
 @media (max-width:780px){.foot-inner{grid-template-columns:1fr 1fr;gap:32px}}
 .foot-brand{font-family:var(--display);font-size:28px;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
 .foot-tag{font-size:14px;color:rgba(244,239,230,.6);max-width:32ch}
-.foot-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin:0 0 14px;font-weight:500}
+.foot-col .foot-col-title{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ember);margin:0 0 14px;font-weight:500;
+}
 .foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .foot-col a{font-size:14px;color:rgba(244,239,230,.75);transition:color .2s}
 .foot-col a:hover{color:var(--bone)}
@@ -730,11 +733,15 @@ footer{
 }
 
 /* ============ ENTRANCE ANIMATIONS ============ */
+/* Translate-only: opacity stays 1 so LCP/LCP candidates paint immediately (no 2s "render delay" from invisible hero). */
 @keyframes riseIn{
-  from{opacity:0;transform:translateY(24px)}
-  to{opacity:1;transform:translateY(0)}
+  from{transform:translateY(18px)}
+  to{transform:translateY(0)}
 }
-.rise{opacity:0;animation:riseIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+.rise{animation:riseIn .72s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion: reduce){
+  .rise{animation:none}
+}
 .d-1{animation-delay:.05s}
 .d-2{animation-delay:.18s}
 .d-3{animation-delay:.32s}
@@ -860,7 +867,7 @@ footer{
   padding:32px 0 32px;
   border-bottom:1px solid var(--rule);
 }
-.tl-event h4{
+.tl-event h3{
   font-family:var(--display);font-size:24px;letter-spacing:.02em;text-transform:uppercase;
   margin:0 0 8px;color:var(--bone);
 }
@@ -893,7 +900,7 @@ footer{
   display:grid;grid-template-columns:1fr 1fr;gap:48px;
 }
 @media (max-width:780px){.split{grid-template-columns:1fr;gap:36px}}
-.split-block h3{
+.split-block .split-eyebrow{
   font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--ember);margin:0 0 14px;font-weight:500;
 }
@@ -945,7 +952,7 @@ footer{
 .sd-title .sd-tags span{padding:4px 10px;border:1px solid var(--rule-dark);border-radius:100px}
 .sd-body p{margin:0 0 12px;font-size:16px;line-height:1.6;color:rgba(14,11,20,.8)}
 .sd-body p:last-child{margin:0}
-.sd-body h5{
+.sd-body h4{
   font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--ember-deep);margin:18px 0 8px;font-weight:500;
 }
@@ -1001,7 +1008,11 @@ footer{
   display:flex;flex-direction:column;gap:10px;min-height:200px;
 }
 .expect-cell .ec-num{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ember-deep)}
-.expect-cell h4{font-family:var(--display);font-size:24px;line-height:1;letter-spacing:.02em;text-transform:uppercase;margin:0}
+.expect-cell h3{font-family:var(--display);font-size:24px;line-height:1;letter-spacing:.02em;text-transform:uppercase;margin:0}
+.between-lessons-heading{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--neon);margin:0 0 14px;font-weight:500;
+}
 .expect-cell p{margin:0;font-size:14px;line-height:1.55;color:rgba(14,11,20,.75)}
 
 /* gear guide list */
@@ -1011,7 +1022,7 @@ footer{
   background:var(--ink-2);padding:28px;
   display:flex;flex-direction:column;gap:8px;
 }
-.gear-item h5{font-family:var(--display);font-size:22px;line-height:1;letter-spacing:.02em;text-transform:uppercase;margin:0;color:var(--bone)}
+.gear-item h3{font-family:var(--display);font-size:22px;line-height:1;letter-spacing:.02em;text-transform:uppercase;margin:0;color:var(--bone)}
 .gear-item .gear-tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--neon);text-transform:uppercase}
 .gear-item p{margin:0;font-size:14px;line-height:1.6;color:rgba(244,239,230,.75)}
 
@@ -1039,7 +1050,7 @@ footer{
   margin-top:40px;
 }
 @media (max-width:680px){.inline-cta{grid-template-columns:1fr;text-align:left}}
-.inline-cta h3{
+.inline-cta h2{
   font-family:var(--display);font-size:clamp(28px,3vw,36px);line-height:1;
   letter-spacing:.005em;text-transform:uppercase;margin:0 0 8px;
 }

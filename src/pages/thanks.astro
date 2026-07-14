@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title='Thanks: Request Received | Jonathan Zalzman Guitar Lessons'
+	description='Your free trial lesson request has been received. Here is what happens next.'
+	nav='lessons'
+>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="crumbs">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <span>Thanks</span>
+    </div>
+    <div class="page-num"><span class="ix">✓</span> Request Received</div>
+    <h1>Got It.<br>Talk <span class="accent">Soon.</span></h1>
+    <p class="page-lede">Thanks for reaching out. Your request is in, and I read every one myself. <b>Here's what happens next.</b></p>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="wrap">
+    <div class="section-eyebrow" style="color:var(--ember-deep)"><span class="num" style="background:var(--ember-deep);color:var(--bone)">01</span> What Happens Next</div>
+    <h2 class="section-title" style="margin-bottom:40px">Three Quick Steps.</h2>
+
+    <div class="expect-grid" style="border-color:var(--rule-dark);background:var(--rule-dark)">
+      <div class="expect-cell">
+        <span class="ec-num">// STEP 01</span>
+        <h3>I Reply</h3>
+        <p>Usually within 24 hours, by email or a quick text. If it has been longer, check your spam folder or just call me.</p>
+      </div>
+      <div class="expect-cell">
+        <span class="ec-num">// STEP 02</span>
+        <h3>We Pick a Time</h3>
+        <p>We find a slot for your free 30-minute trial lesson, in-person in Suwanee or online, whichever you chose.</p>
+      </div>
+      <div class="expect-cell">
+        <span class="ec-num">// STEP 03</span>
+        <h3>You Play</h3>
+        <p>Bring your instrument if you have one. We talk goals, play some music, and map out where to go next. No commitment.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <a href="/" class="btn btn-primary">Back to Home <span class="arrow">→</span></a>
+      <a href="/teach" class="btn btn-ghost" style="color:var(--ink);border-color:var(--rule-dark)">See What I Teach</a>
+    </div>
+
+    <p style="margin-top:32px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:rgba(14,11,20,.6)">
+      In a hurry? Call (770) 831-7936 or email lessons@jonathanzalzman.com.
+    </p>
+  </div>
+</section>
+</BaseLayout>

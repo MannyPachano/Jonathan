@@ -1,4 +1,4 @@
-/* Latin-only subset — skips vietnamese + latin-ext from full wght.css (~40KB vs ~75KB latin opsz in typical chain). */
+/* Latin-only subset, skips vietnamese + latin-ext from full wght.css (~40KB vs ~75KB latin opsz in typical chain). */
 @font-face {
 	font-family: "Bricolage Grotesque Variable";
 	font-style: normal;

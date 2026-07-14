@@ -2,6 +2,7 @@
 import { getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ResponsivePicture from "../components/ResponsivePicture.astro";
+import BookingForm from "../components/BookingForm.astro";
 import imgStage from "../assets/jonathan-stage-green.jpg";
 import imgPortrait from "../assets/jonathan-portrait.jpg";
 import imgVenue from "../assets/jonathan-venue-teal.jpg";
@@ -17,9 +18,10 @@ const heroLcpAvif = await getImage({
 ---
 
 <BaseLayout
-	title='Jonathan Zalzman — Guitar Lessons in Suwanee, GA'
-	description="Private guitar, bass, and ukulele lessons in Suwanee, GA with Jonathan Zalzman — leader of Atlanta's Free Hat, lead guitarist of Cadillac Rainbows. All ages, all styles. In-person & online."
+	title='Jonathan Zalzman: Guitar Lessons in Suwanee, GA'
+	description="Private guitar, bass, and ukulele lessons in Suwanee, GA with Jonathan Zalzman, leader of Atlanta's Free Hat and lead guitarist of Cadillac Rainbows. All ages, all styles. In-person and online."
 	nav='home'
+	bookHref='#book'
 	lcpImage={{ href: heroLcpAvif.src, type: "image/avif" }}
 >
 <!-- ===================== HERO ===================== -->
@@ -38,17 +40,20 @@ const heroLcpAvif = await getImage({
       </h1>
 
       <p class="h-sub rise d-5">
-        I'm Jonathan — guitarist for Atlanta's <b>Free Hat</b> and lead guitarist for Phish-tribute <b>Cadillac Rainbows</b>. I've been gigging the Southeast for a decade and teaching for over five years. Whether you're picking up a guitar for the first time or chasing a sound you can't quite get yet, I'll help you find it.
+        Private guitar, bass, and ukulele lessons in Suwanee, or online anywhere. Ten years on Atlanta stages, five years teaching. Tell me the song you wish you could play, and I'll build you the plan to play it.
       </p>
 
       <div class="cta-row rise d-6">
         <a href="/lessons#book" class="btn btn-primary">
           Book a Free Trial Lesson <span class="arrow">→</span>
         </a>
-        <a href="/about" class="btn btn-ghost">
-          Meet Jonathan
+        <!-- TODO(jonathan): swap for an embedded 45s teaching/playing clip (see Task 7 video facade) -->
+        <a href="https://www.youtube.com/@freehatmusic" target="_blank" rel="noopener" class="btn btn-ghost">
+          Watch Me Play <span class="arrow">→</span>
         </a>
       </div>
+
+      <p class="hero-microtrust rise d-6">First lesson free. No registration fee. No contract. Cancel any time.</p>
 
       <div class="trust rise d-6">
         <span>Ages 6+</span>
@@ -87,14 +92,11 @@ const heroLcpAvif = await getImage({
           <li><span class="num">A1</span><span class="name">Rock &amp; Blues Fundamentals</span><span class="meta">Beginner</span></li>
           <li><span class="num">A2</span><span class="name">Funk Rhythm &amp; Groove</span><span class="meta">All Levels</span></li>
           <li><span class="num">A3</span><span class="name">Lead &amp; Improvisation</span><span class="meta">Inter</span></li>
-          <li><span class="num">B1</span><span class="name">Jazz Fusion &amp; Theory</span><span class="meta">Adv</span></li>
-          <li><span class="num">B2</span><span class="name">Progressive &amp; Shred Technique</span><span class="meta">Adv</span></li>
-          <li><span class="num">B3</span><span class="name">Songwriting &amp; Composition</span><span class="meta">All Levels</span></li>
+          <li><span class="num">B1</span><span class="name">Songwriting &amp; Composition</span><span class="meta">All Levels</span></li>
         </ul>
 
         <div class="sc-foot">
           <span>Recorded live · Suwanee GA</span>
-          <span class="key">$159/mo</span>
         </div>
       </div>
     </aside>
@@ -121,13 +123,13 @@ const heroLcpAvif = await getImage({
 
     <div class="bio-grid">
       <div class="bio-copy">
-        <p>I picked up a guitar at <em>thirteen</em>, the night I saw Buckethead at the Masquerade in Atlanta — and I haven't put it down since.</p>
+        <p>I picked up a guitar at <em>thirteen</em>, the night I saw Buckethead at the Masquerade in Atlanta, and I haven't put it down since.</p>
 
-        <p>That show changed the way I thought about music. The years since have been a chase: shred, funk, jazz fusion, progressive rock, metal — pulling everything I love into a sound that's mine. I lead a Progressive Jamtronica project called <b>Free Hat</b>, formed in Atlanta in 2016. I'm the lead guitarist for the Phish tribute band <b>Cadillac Rainbows</b>, and I sit in regularly with the jam collective <b>BadAsh Allstar Team</b>.</p>
+        <p>That show changed the way I thought about music. The years since have been a chase: shred, funk, jazz fusion, progressive rock, metal, pulling everything I love into a sound that's mine. I lead a Progressive Jamtronica project called <b>Free Hat</b>, formed in Atlanta in 2016. I'm the lead guitarist for the Phish tribute band <b>Cadillac Rainbows</b>, and I sit in regularly with the jam collective <b>BadAsh Allstar Team</b>.</p>
 
-        <p>I've been teaching guitar, bass, and ukulele for over five years. My students range from absolute beginners (some as young as six) to adults coming back to an instrument they put down twenty years ago, to teens chasing a specific sound and wanting a real plan to get there. I tailor every lesson — there's no "method book and good luck" here.</p>
+        <p>I've been teaching guitar, bass, and ukulele for over five years. My students range from absolute beginners (some as young as six) to adults coming back to an instrument they put down twenty years ago, to teens chasing a specific sound and wanting a real plan to get there. I tailor every lesson. There's no "method book and good luck" here.</p>
 
-        <p>What I want most is to pass on the spark — the same spark a Buckethead show lit in me. If you bring the curiosity, I'll bring the roadmap.</p>
+        <p>What I want most is to pass on the spark, the same spark a Buckethead show lit in me. You bring the willingness to show up. The plan is my job.</p>
       </div>
 
       <figure class="bio-portrait">
@@ -150,7 +152,7 @@ const heroLcpAvif = await getImage({
         <h3>// Credentials &amp; Cred</h3>
         <ul class="cred-list">
           <li>
-            <span class="yr">2016—</span>
+            <span class="yr">2016+</span>
             <span class="what">
               <b>Free Hat</b>
               <span>Founder · Lead Guitar · 3 albums, dozens of Atlanta venues</span>
@@ -205,7 +207,7 @@ const heroLcpAvif = await getImage({
         <span class="sc-no">001</span>
         <h3>Rock &amp;<br>Blues</h3>
         <p>Riff-based foundations, classic rock, blues bends, pentatonic vocabulary, the songs you've always wanted to play.</p>
-        <span class="tag">Beginner — Advanced</span>
+        <span class="tag">Beginner to Advanced</span>
       </div>
       <div class="style-card">
         <span class="sc-no">002</span>
@@ -216,14 +218,14 @@ const heroLcpAvif = await getImage({
       <div class="style-card">
         <span class="sc-no">003</span>
         <h3>Jazz &amp;<br>Fusion</h3>
-        <p>Chord-melody, improvisation over changes, modal playing, the language of the greats — without the gatekeeping.</p>
-        <span class="tag">Intermediate — Advanced</span>
+        <p>Chord-melody, improvisation over changes, modal playing, the language of the greats, without the gatekeeping.</p>
+        <span class="tag">Intermediate to Advanced</span>
       </div>
       <div class="style-card">
         <span class="sc-no">004</span>
         <h3>Prog &amp;<br>Shred</h3>
         <p>Alternate picking, sweeping, tapping, odd time signatures. The technique to play anything you imagine.</p>
-        <span class="tag">Intermediate — Advanced</span>
+        <span class="tag">Intermediate to Advanced</span>
       </div>
       <div class="style-card">
         <span class="sc-no">005</span>
@@ -240,7 +242,7 @@ const heroLcpAvif = await getImage({
       <div class="style-card">
         <span class="sc-no">007</span>
         <h3>Bass &amp;<br>Ukulele</h3>
-        <p>Not a guitar player? No problem. Bass groove fundamentals or laid-back ukulele — same studio, same standards.</p>
+        <p>Not a guitar player? No problem. Bass groove fundamentals or laid-back ukulele. Same studio, same standards.</p>
         <span class="tag">All Ages</span>
       </div>
       <div class="style-card">
@@ -255,6 +257,14 @@ const heroLcpAvif = await getImage({
         <p>The jam-band approach: listening, conversation, taking risks. Soloing as a language, not a shape.</p>
         <span class="tag">Intermediate</span>
       </div>
+    </div>
+
+    <div class="inline-cta">
+      <div>
+        <h2>Don't See Your Style? Ask Me.</h2>
+        <p>If it has strings, chances are I teach it. The first lesson is free, so there's an easy way to find out.</p>
+      </div>
+      <a href="/lessons#book" class="btn btn-primary">Book a Free Trial <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -272,7 +282,7 @@ const heroLcpAvif = await getImage({
     <p class="div-quote">
       <span class="qmark">"</span>The stuff I teach is the stuff I do<br>every weekend on stage.<span class="qmark q-end">"</span>
     </p>
-    <p class="div-attr">— Jonathan</p>
+    <p class="div-attr">Jonathan Zalzman</p>
   </div>
 </section>
 
@@ -282,7 +292,7 @@ const heroLcpAvif = await getImage({
     <div class="section-head">
       <div>
         <div class="section-eyebrow"><span class="num">03</span> How It Works</div>
-        <h2 class="section-title">Simple. Flexible. No Tricks.</h2>
+        <h2 class="section-title">Three Steps. No Sign-Up Fee.</h2>
       </div>
     </div>
 
@@ -290,7 +300,7 @@ const heroLcpAvif = await getImage({
       <div class="step">
         <span class="step-no">01</span>
         <h3>Free Trial Lesson</h3>
-        <p>Reach out and we'll set up a free first meeting. We'll talk about what you want to play, your goals, and whether we're a good fit. No pressure, no commitment.</p>
+        <p>Reach out and we'll set up a free first meeting. We'll talk about what you want to play, your goals, and whether we're a good fit. It's free, and you decide afterward.</p>
       </div>
       <div class="step">
         <span class="step-no">02</span>
@@ -301,6 +311,36 @@ const heroLcpAvif = await getImage({
         <span class="step-no">03</span>
         <h3>Show Up &amp; Play</h3>
         <p>Weekly 30-minute lessons in Suwanee or online via video. Easy scheduling, video and audio resources between lessons, and unlimited makeups with 24-hour notice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOR PARENTS ===================== -->
+<section class="section parents">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow"><span class="num">★</span> For Parents</div>
+        <h2 class="section-title">Thinking About Lessons for Your Kid?</h2>
+      </div>
+    </div>
+
+    <div class="parents-grid">
+      <div class="parent-cell">
+        <span class="pc-num">// Ages 6 and Up</span>
+        <h3>A Gentle Start</h3>
+        <p>Kids can start as young as six. The first month for a brand-new player is about small wins: how to hold the guitar, a few open chords, and one real song they can show you at home. Nothing scary, nothing boring.</p>
+      </div>
+      <div class="parent-cell">
+        <span class="pc-num">// You Stay in the Loop</span>
+        <h3>Progress You Can See</h3>
+        <p>After each lesson I send a short practice plan, so you always know what your child is working on and how it is going. If something needs attention at home, I will tell you plainly.</p>
+      </div>
+      <div class="parent-cell">
+        <span class="pc-num">// Room to Shine</span>
+        <h3>Somewhere to Play</h3>
+        <p>Students who want it get quarterly performance opportunities: low-key chances to play in front of people and build real confidence. Lessons happen in person in Suwanee or online, whichever fits your week.</p>
       </div>
     </div>
   </div>
@@ -333,6 +373,7 @@ const heroLcpAvif = await getImage({
       <div class="price-card featured">
         <div class="price-label">// Weekly Lessons</div>
         <div class="price-amount"><sup>$</sup>159<span class="per"> /month</span></div>
+        <p class="plan-savings">Save 20% vs. single lessons.</p>
         <p class="price-desc">Weekly 30-minute lesson. The standard plan most students choose.</p>
         <ul class="price-features">
           <li>4 weekly lessons per month</li>
@@ -341,12 +382,13 @@ const heroLcpAvif = await getImage({
           <li>Unlimited makeups (24hr notice)</li>
           <li>Quarterly student performance opportunities</li>
         </ul>
-        <a href="/lessons#book" class="btn btn-primary">Sign Up →</a>
+        <a href="/lessons#book" class="btn btn-primary">Start Free Trial →</a>
       </div>
 
       <div class="price-card">
         <div class="price-label">// À La Carte</div>
-        <div class="price-amount"><sup>$</sup>40<span class="per"> /lesson</span></div>
+        <!-- TODO(jonathan): confirm à la carte price increase to $50 -->
+        <div class="price-amount"><sup>$</sup>50<span class="per"> /lesson</span></div>
         <p class="price-desc">One-off 30-minute lesson. For tune-ups, prep, or trying it out.</p>
         <ul class="price-features">
           <li>Single 30-minute session</li>
@@ -372,30 +414,50 @@ const heroLcpAvif = await getImage({
 
     <div class="quotes-grid">
       <div class="quote">
-        <div class="stars">★★★★★</div>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
         <p>"Jonathan is patient and clearly knows his stuff. My son started barely able to hold a pick and now he's playing actual songs he picked himself. Worth every dollar."</p>
         <div class="quote-attr">
-          <b>Parent of a 12-year-old student</b>
-          Suwanee, GA
+          <!-- TODO(jonathan): real name + town, or link to the Google review. Optional avatar: <img class="quote-avatar" src="/src/assets/AVATAR.jpg" alt="" /> -->
+          <div class="quote-attr-text">
+            <b>Parent of a 12-year-old student</b>
+            <span class="quote-town">Suwanee, GA</span>
+          </div>
+          <!-- Optional source link once a real review exists:
+          <a class="quote-source" href="TODO(jonathan): Google review URL" target="_blank" rel="noopener">Google Review</a> -->
         </div>
       </div>
       <div class="quote">
-        <div class="stars">★★★★★</div>
-        <p>"I came in wanting to play in a jam-band style and Jonathan got it immediately. He doesn't push his taste on you — he meets you where you are and pushes you forward. Best teacher I've had."</p>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>"I came in wanting to play in a jam-band style and Jonathan got it immediately. He doesn't push his taste on you, he takes your goals seriously and pushes you forward. Best teacher I've had."</p>
         <div class="quote-attr">
-          <b>Adult Student · 2 years</b>
-          Online Lessons
+          <!-- TODO(jonathan): real name + town, or link to the Google review. Optional avatar: <img class="quote-avatar" src="/src/assets/AVATAR.jpg" alt="" /> -->
+          <div class="quote-attr-text">
+            <b>Adult Student · 2 years</b>
+            <span class="quote-town">Online Lessons</span>
+          </div>
         </div>
       </div>
       <div class="quote">
-        <div class="stars">★★★★★</div>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
         <p>"I'm a metal kid and Jonathan helped me with technique I'd been getting wrong for years. He's also just a sick player so it's motivating to watch him demo stuff in lessons."</p>
         <div class="quote-attr">
-          <b>Teen Student · 16</b>
-          Buford, GA
+          <!-- TODO(jonathan): real name + town, or link to the Google review. Optional avatar: <img class="quote-avatar" src="/src/assets/AVATAR.jpg" alt="" /> -->
+          <div class="quote-attr-text">
+            <b>Teen Student · 16</b>
+            <span class="quote-town">Buford, GA</span>
+          </div>
         </div>
       </div>
     </div>
+
+    <p class="quotes-cta">
+      <a href="/lessons">See lesson plans and pricing →</a>
+    </p>
+
+    <!-- TODO(jonathan): if a Google Business Profile exists, set this href to the reviews page and unhide it -->
+    <p class="quotes-google" hidden>
+      <a href="TODO(jonathan): Google reviews URL" target="_blank" rel="noopener">See all reviews on Google →</a>
+    </p>
   </div>
 </section>
 
@@ -403,19 +465,26 @@ const heroLcpAvif = await getImage({
 <section class="section band">
   <div class="wrap">
     <div class="band-grid">
-      <figure class="band-photo">
+      <!-- TODO(jonathan): supply a 45-90 second clip, ideally teaching, not just performing.
+           Set data-video-id to the YouTube video ID to turn this into a click-to-load embed.
+           While it is empty, the play button opens the Free Hat channel in a new tab. -->
+      <figure class="band-photo video-facade" data-video-id="" data-channel-url="https://www.youtube.com/@freehatmusic">
         <ResponsivePicture
           src={imgBand}
-          alt="Free Hat band photo — Jonathan Zalzman second from left"
+          alt="Free Hat band photo, Jonathan Zalzman second from left"
           sizes="(max-width: 880px) 100vw, min(720px, 58vw)"
           loading="lazy"
           decoding="async"
         />
+        <button class="video-play" type="button" aria-label="Play a Free Hat video">
+          <span class="video-play-icon" aria-hidden="true">▶</span>
+          <span class="video-play-label">Watch Free Hat Live</span>
+        </button>
       </figure>
       <div class="band-copy">
         <div class="section-eyebrow"><span class="num">★</span> Hear Me Play</div>
         <h2 class="band-title">I Don't Just <em>Teach</em> Guitar.<br>I Play It For a Living.</h2>
-        <p class="band-text">Want to know what your teacher actually sounds like? Listen to <b>Free Hat</b> — three full-length releases on Spotify, dozens of live videos on YouTube, a decade of Atlanta stages. The stuff I teach is the stuff I do every weekend.</p>
+        <p class="band-text">Want to know what your teacher actually sounds like? Listen to <b>Free Hat</b>: three full-length releases on Spotify, dozens of live videos on YouTube, a decade of Atlanta stages. When I demo a technique in a lesson, it's one I use on stage every weekend.</p>
         <div class="band-links">
           <a href="https://open.spotify.com/artist/4J65orwYw2On9M42WaKGHu" target="_blank" rel="noopener" class="band-link">
             <span class="bl-icon">▶</span>
@@ -441,7 +510,7 @@ const heroLcpAvif = await getImage({
     <div class="section-head">
       <div>
         <div class="section-eyebrow"><span class="num">06</span> Common Questions</div>
-        <h2 class="section-title">The FAQ.</h2>
+        <h2 class="section-title">Questions I Get Every Week</h2>
       </div>
     </div>
 
@@ -452,19 +521,19 @@ const heroLcpAvif = await getImage({
       </div>
       <div class="faq-item">
         <button class="faq-q">I haven't played in 20 years. Can I still take lessons? <span class="toggle">+</span></button>
-        <div class="faq-a"><p>Yes — adult comeback students are some of my favorites. We'll start by figuring out what you used to know and what you actually want to be able to play, and build a plan from there. You'll be surprised how fast it comes back.</p></div>
+        <div class="faq-a"><p>Yes. Adult comeback students are some of my favorites. We'll start by figuring out what you used to know and what you actually want to be able to play, and build a plan from there. You'll be surprised how fast it comes back.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">What's the difference between in-person and online? <span class="toggle">+</span></button>
-        <div class="faq-a"><p>The lesson itself is essentially identical — same plan, same materials, same teacher. In-person works great if you're in the Suwanee, Sugar Hill, Buford, Duluth, or John's Creek area. Online works great if you're outside that radius, traveling often, or just prefer it. Many students do a mix.</p></div>
+        <div class="faq-a"><p>The lesson itself is essentially identical: same plan, same materials, same teacher. In-person works great if you're in the Suwanee, Sugar Hill, Buford, Duluth, or John's Creek area. Online works great if you're outside that radius, traveling often, or just prefer it. Many students do a mix.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">What if I miss a lesson? <span class="toggle">+</span></button>
-        <div class="faq-a"><p>You get unlimited makeups as long as you give 24 hours notice. Life happens — kids get sick, work runs late, you have a hockey game. The scheduling system makes rebooking simple from your phone.</p></div>
+        <div class="faq-a"><p>You get unlimited makeups as long as you give 24 hours notice. Things come up: kids get sick, work runs late, you have a hockey game. The scheduling system makes rebooking simple from your phone.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Do I need my own guitar? What kind? <span class="toggle">+</span></button>
-        <div class="faq-a"><p>Yes, you'll need an instrument to practice on. For starters, an acoustic or electric guitar in any reasonable condition is fine — I can help you pick something inexpensive but workable if you don't have one yet. Don't buy gear before our first lesson; we can talk through it.</p></div>
+        <div class="faq-a"><p>Yes, you'll need an instrument to practice on. For starters, an acoustic or electric guitar in any reasonable condition is fine, and I can help you pick something inexpensive but workable if you don't have one yet. Don't buy gear before our first lesson; we can talk through it.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Do you teach bass and ukulele too? <span class="toggle">+</span></button>
@@ -472,7 +541,7 @@ const heroLcpAvif = await getImage({
       </div>
       <div class="faq-item">
         <button class="faq-q">Can you really teach total beginners and advanced players? <span class="toggle">+</span></button>
-        <div class="faq-a"><p>Yes. Beginners need the right foundation — clean technique, a few honest songs, ear training — and that's exactly what I teach them. Advanced players come for specific things: alternate picking, jazz vocabulary, fusion phrasing, prog technique, getting unstuck. The level changes; the principle of meeting you where you are doesn't.</p></div>
+        <div class="faq-a"><p>Yes. Beginners need the right foundation: clean technique, a few honest songs, ear training, and that's exactly what I teach them. Advanced players come for specific things: alternate picking, jazz vocabulary, fusion phrasing, prog technique, getting unstuck. The level changes; the habit of starting from what each student actually wants doesn't.</p></div>
       </div>
     </div>
   </div>
@@ -485,12 +554,17 @@ const heroLcpAvif = await getImage({
       <span class="num" style="background:var(--neon);color:var(--ink)">07</span>
       Ready When You Are
     </div>
-    <h2>Let's <em>Make</em> Some Noise.</h2>
-    <p>The first lesson is free, and there's no commitment after. Send a message and we'll find a time that works.</p>
-    <div class="cta-row" style="justify-content:center">
-      <a href="mailto:lessons@jonathanzalzman.com" class="btn btn-primary">Email Jonathan <span class="arrow">→</span></a>
-      <a href="tel:7708317936" class="btn btn-ghost">Call (770) 831-7936</a>
-    </div>
+    <h2>Book Your <em>Free</em> Lesson.</h2>
+    <p>The first lesson is free, and there's no commitment after. Tell me a bit about you and we'll find a time that works.</p>
+
+    <BookingForm />
+
+    <p class="final-alt">
+      Prefer to reach out directly?
+      <a href="mailto:lessons@jonathanzalzman.com">Email Jonathan</a>
+      <span class="sep">·</span>
+      <a href="tel:7708317936">Call (770) 831-7936</a>
+    </p>
   </div>
 </section>
 

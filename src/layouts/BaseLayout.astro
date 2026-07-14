@@ -1,6 +1,7 @@
 ---
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import MobileCTABar from "../components/MobileCTABar.astro";
 
 /* Preload display face so nav + hero headline paint early (shortens font chain vs parsing CSS first). */
 import antonLatinWoff2Url from "@fontsource/anton/files/anton-latin-400-normal.woff2?url";
@@ -18,11 +19,13 @@ interface Props {
 	title: string;
 	description: string;
 	nav?: "home" | "about" | "teach" | "lessons" | "faq";
-	/** Preload the LCP image (e.g. hero on home) — must match a URL the <picture> will request. */
+	/** Preload the LCP image (e.g. hero on home). Must match a URL the <picture> will request. */
 	lcpImage?: { href: string; type?: string };
+	/** Where the sticky mobile CTA links. Pages with an on-page booking form pass "#book". */
+	bookHref?: string;
 }
 
-const { title, description, nav = "home", lcpImage } = Astro.props;
+const { title, description, nav = "home", lcpImage, bookHref = "/lessons#book" } = Astro.props;
 ---
 
 <!doctype html>
@@ -66,6 +69,7 @@ const { title, description, nav = "home", lcpImage } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+		<MobileCTABar bookHref={bookHref} />
 		<script defer src="/js/site.js"></script>
 	</body>
 </html>

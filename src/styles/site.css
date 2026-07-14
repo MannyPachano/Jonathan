@@ -44,7 +44,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 
 /* ============ NAV ============ */
 .nav{
-  position:fixed;top:0;left:0;right:0;z-index:50;
+  position:fixed;top:0;left:0;right:0;z-index:60;
   display:flex;align-items:center;justify-content:space-between;
   padding:18px 28px;
   background:linear-gradient(to bottom, rgba(14,11,20,.85), rgba(14,11,20,.55) 70%, transparent);
@@ -78,11 +78,82 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   border-radius:2px;
   transition:transform .15s ease, background .2s;
 }
-.nav-cta:hover{transform:translate(-2px,-2px);background:var(--neon);box-shadow:4px 4px 0 var(--ink)}
+.nav-cta:hover{transform:translate(-2px,-2px);background:var(--ember-deep);box-shadow:4px 4px 0 var(--ink)}
+/* ---- mobile hamburger toggle (base styles first so the media query below wins) ---- */
+.nav-toggle{
+  display:none;
+  flex-direction:column;justify-content:center;gap:5px;
+  width:44px;height:44px;padding:11px;
+  background:transparent;z-index:60;
+}
+
 @media (max-width:780px){
-  .nav-links a:not(.nav-cta){display:none}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
   .nav{padding:14px 18px}
 }
+
+.nav-toggle-bar{
+  display:block;width:100%;height:2px;background:var(--bone);border-radius:2px;
+  transition:transform .25s ease, opacity .2s ease;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---- mobile slide-down menu ---- */
+.mobile-menu{
+  position:fixed;inset:0;z-index:55;
+  background:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;gap:4px;
+  padding:96px 28px 48px;
+  opacity:0;visibility:hidden;transform:translateY(-14px);
+  transition:opacity .25s ease, transform .25s ease, visibility .25s;
+}
+.mobile-menu.open{opacity:1;visibility:visible;transform:none}
+.mobile-menu a{
+  font-family:var(--display);font-size:clamp(30px,9vw,44px);line-height:1;
+  letter-spacing:.02em;text-transform:uppercase;color:var(--bone);
+  padding:14px 0;border-bottom:1px solid var(--rule);
+  transition:color .2s;
+}
+.mobile-menu a:hover,.mobile-menu a:focus-visible{color:var(--ember)}
+.mobile-menu .mobile-menu-cta{
+  margin-top:28px;align-self:flex-start;border-bottom:0;
+  font-family:var(--mono);font-size:15px;letter-spacing:.06em;
+  padding:16px 26px;color:var(--ink);
+}
+@media (min-width:781px){.mobile-menu,.nav-toggle{display:none}}
+body.menu-open{overflow:hidden}
+
+/* ---- sticky mobile CTA bar ---- */
+.mobile-cta-bar{
+  display:none;
+  position:fixed;left:0;right:0;bottom:0;z-index:45;
+  gap:12px;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:rgba(14,11,20,.94);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid var(--rule-strong);
+  transition:transform .3s ease;
+}
+@media (max-width:780px){.mobile-cta-bar{display:flex}}
+.mobile-cta-bar.mcb-hide{transform:translateY(130%)}
+.mcb-book{
+  flex:1;text-align:center;
+  background:var(--ember);color:var(--ink);
+  font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:15px 18px;border-radius:3px;
+}
+.mcb-call{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1.5px solid var(--rule-strong);color:var(--bone);
+  font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:15px 18px;border-radius:3px;
+}
+.mcb-call-icon{font-size:15px}
+/* keep the sticky bar clear of footer content on mobile */
+@media (max-width:780px){footer{padding-bottom:104px}}
 
 /* ============ HERO ============ */
 .hero{
@@ -172,7 +243,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   cursor:pointer;
 }
 .btn-primary{background:var(--ember);color:var(--ink);box-shadow:0 0 0 0 var(--ember)}
-.btn-primary:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--neon)}
+/* keep the action color in the ember family on hover (never --neon) */
+.btn-primary:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ember-deep)}
 .btn-ghost{
   background:transparent;color:var(--bone);
   border:1.5px solid var(--rule-strong);
@@ -189,8 +261,12 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 }
 .trust span{display:inline-flex;align-items:center;gap:8px}
 .trust span::before{content:"";width:6px;height:6px;background:var(--neon);border-radius:50%}
+.hero-microtrust{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  color:rgba(244,239,230,.72);margin:0 0 28px;
+}
 
-/* hero RIGHT panel — "stage card" */
+/* hero RIGHT panel, "stage card" */
 .stage-card{
   position:relative;
   background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
@@ -302,7 +378,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   max-width:14ch;
 }
 
-/* ============ BIO / "ABOUT" — light section ============ */
+/* ============ BIO / "ABOUT" light section ============ */
 .bio{background:var(--bone);color:var(--ink)}
 .bio .section-eyebrow{color:var(--ember-deep)}
 .bio .section-eyebrow .num{background:var(--ember-deep);color:var(--bone)}
@@ -496,6 +572,23 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 }
 .step p{margin:0;font-size:15px;line-height:1.55;color:rgba(14,11,20,.75)}
 
+/* ============ FOR PARENTS ============ */
+.parents{background:var(--bone-2);color:var(--ink)}
+.parents .section-eyebrow{color:var(--ember-deep)}
+.parents .section-eyebrow .num{background:var(--ember-deep);color:var(--bone)}
+.parents-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--rule-dark);border:1px solid var(--rule-dark);
+}
+@media (max-width:880px){.parents-grid{grid-template-columns:1fr}}
+.parent-cell{
+  background:var(--bone);padding:34px 30px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.parent-cell .pc-num{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ember-deep)}
+.parent-cell h3{font-family:var(--display);font-size:26px;line-height:1;letter-spacing:.02em;text-transform:uppercase;margin:0}
+.parent-cell p{margin:0;font-size:15px;line-height:1.6;color:rgba(14,11,20,.78)}
+
 /* ============ PRICING ============ */
 .pricing{background:var(--ink);color:var(--bone)}
 .price-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:0;border:1px solid var(--rule-strong);border-radius:4px;overflow:hidden}
@@ -538,6 +631,11 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   content:"+";color:var(--neon);font-weight:700;font-family:var(--mono);
 }
 .price-card .btn{margin-top:28px;justify-content:center}
+/* "Save 20%" line on featured plan cards */
+.plan-savings{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ember);margin:0 0 12px;
+}
 
 /* ============ TESTIMONIALS ============ */
 .quotes{background:var(--ink-2);color:var(--bone);position:relative;overflow:hidden}
@@ -561,7 +659,32 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
   color:rgba(244,239,230,.5);
 }
+.quote-attr{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .quote-attr b{display:block;color:var(--bone);font-family:var(--body);text-transform:none;letter-spacing:0;font-size:14px;margin-bottom:2px;font-weight:600}
+.quote-attr-text{display:flex;flex-direction:column;min-width:0}
+.quote-town{color:rgba(244,239,230,.5)}
+.quote-avatar{
+  width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;
+  border:1px solid var(--rule-strong);
+}
+.quote-source{
+  margin-left:auto;color:var(--ember);
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  transition:color .2s;
+}
+.quote-source:hover{color:var(--bone)}
+.quotes-cta{margin:36px 0 0;text-align:center}
+.quotes-cta a{
+  color:var(--ember);font-family:var(--mono);font-size:14px;letter-spacing:.06em;
+  text-transform:uppercase;transition:color .2s;
+}
+.quotes-cta a:hover{color:var(--bone)}
+.quotes-google{margin:20px 0 0;text-align:center}
+.quotes-google a{
+  color:var(--ember);font-family:var(--mono);font-size:13px;letter-spacing:.06em;
+  transition:color .2s;
+}
+.quotes-google a:hover{color:var(--bone)}
 
 /* ============ BAND / FREE HAT ============ */
 .band{
@@ -602,6 +725,29 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
   font-family:var(--mono);font-size:10px;letter-spacing:.16em;font-weight:500;
   z-index:2;
 }
+
+/* click-to-load video facade (no YouTube iframe until the play button is clicked) */
+.video-facade{cursor:pointer}
+.video-play{
+  position:absolute;inset:0;z-index:3;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  background:rgba(14,11,20,.35);
+  transition:background .2s ease;
+}
+.video-facade:hover .video-play{background:rgba(14,11,20,.5)}
+.video-play-icon{
+  width:66px;height:66px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--ember);color:var(--ink);font-size:22px;padding-left:4px;
+  box-shadow:0 6px 24px rgba(0,0,0,.35);
+  transition:transform .2s ease;
+}
+.video-facade:hover .video-play-icon{transform:scale(1.08)}
+.video-play-label{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--bone);text-shadow:0 1px 6px rgba(0,0,0,.6);
+}
+.video-facade .video-embed{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4}
 
 .band-copy .section-eyebrow{margin-bottom:14px}
 .band-copy .section-eyebrow .num{
@@ -654,7 +800,15 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 .band-link .bl-text span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:rgba(244,239,230,.55);text-transform:uppercase}
 
 /* ============ FAQ ============ */
-.faq{background:var(--bone);color:var(--ink)}
+/* --haze is deployed deliberately here as the FAQ section accent (plus the stage-card
+   top rule and the band-photo drop shadow), so the variable is never left dangling. */
+.faq{background:var(--bone);color:var(--ink);position:relative;overflow:hidden}
+.faq::before{
+  content:"";position:absolute;top:-15%;right:-8%;width:460px;height:460px;
+  background:radial-gradient(circle, color-mix(in srgb, var(--haze) 14%, transparent), transparent 62%);
+  pointer-events:none;
+}
+.faq .wrap{position:relative;z-index:1}
 .faq .section-eyebrow{color:var(--ember-deep)}
 .faq .section-eyebrow .num{background:var(--ember-deep);color:var(--bone)}
 .faq-list{display:flex;flex-direction:column;border-top:1px solid var(--rule-dark)}
@@ -741,6 +895,7 @@ footer{
 .rise{animation:riseIn .72s cubic-bezier(.2,.7,.2,1) both}
 @media (prefers-reduced-motion: reduce){
   .rise{animation:none}
+  .mobile-menu,.mobile-cta-bar,.nav-toggle-bar{transition:none}
 }
 .d-1{animation-delay:.05s}
 .d-2{animation-delay:.18s}
@@ -1055,4 +1210,87 @@ footer{
   letter-spacing:.005em;text-transform:uppercase;margin:0 0 8px;
 }
 .inline-cta p{margin:0;font-size:15px;color:rgba(244,239,230,.75);max-width:50ch}
+.inline-cta .btn{white-space:nowrap}
+
+/* ============ BOOKING FORM ============ */
+.booking{max-width:680px;text-align:left}
+.booking-heading{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ember);margin:0 0 22px;font-weight:500;
+}
+/* honeypot: visually hidden but reachable to bots */
+.booking-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.bf-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:560px){.bf-grid{grid-template-columns:1fr}}
+.bf-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.bf-field-wide{grid-column:1 / -1}
+.bf-field label,
+.bf-radio legend{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink);font-weight:500;padding:0;
+}
+.bf-field .bf-opt{color:rgba(14,11,20,.45);letter-spacing:.1em}
+.bf-field input,
+.bf-field select,
+.bf-field textarea{
+  font-family:var(--body);font-size:15px;
+  background:var(--bone);color:var(--ink);
+  border:2px solid var(--ink);border-radius:3px;
+  padding:12px 14px;width:100%;
+  transition:box-shadow .15s ease;
+}
+.bf-field textarea{resize:vertical;min-height:84px}
+.bf-field select{
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%230E0B14' stroke-width='2'/></svg>");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
+}
+.bf-field input:focus,
+.bf-field select:focus,
+.bf-field textarea:focus,
+.bf-radio-opt input:focus{
+  outline:2px solid var(--ember);outline-offset:2px;
+}
+.bf-radio{border:0;margin:0;padding:0}
+.bf-radio-opt{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--body);font-size:15px;letter-spacing:0;text-transform:none;
+  color:var(--ink);padding:6px 0;cursor:pointer;
+}
+.bf-radio-opt input{width:auto;accent-color:var(--ember)}
+.bf-submit{width:100%;justify-content:center;margin-top:24px}
+@media (min-width:560px){.bf-submit{width:auto}}
+.bf-reassure{
+  margin:14px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.04em;
+  color:rgba(14,11,20,.6);
+}
+
+/* booking form on a dark background (homepage final CTA) */
+.final .booking{margin:0 auto}
+.final .booking-form label,
+.final .booking-form .bf-radio legend,
+.final .booking-form .bf-radio-opt{color:var(--bone)}
+.final .booking-form .bf-field .bf-opt{color:rgba(244,239,230,.5)}
+.final .booking-form .bf-reassure{color:rgba(244,239,230,.7)}
+.final-alt{
+  margin:28px auto 0;font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  color:rgba(244,239,230,.6);
+}
+.final-alt a{color:var(--ember);transition:color .2s}
+.final-alt a:hover{color:var(--bone)}
+.final-alt .sep{color:rgba(244,239,230,.3);margin:0 4px}
+
+/* demoted call/email row under the booking form */
+.contact-alt{margin-top:40px;padding-top:24px;border-top:1px solid var(--rule-dark)}
+.contact-alt-head{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(14,11,20,.55);margin:0 0 10px;
+}
+.contact-alt-row{
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:13px;letter-spacing:.04em;
+}
+.contact-alt-row a{color:var(--ember-deep);transition:color .2s}
+.contact-alt-row a:hover{color:var(--ember)}
+.contact-alt-row .sep{color:rgba(14,11,20,.35)}
 

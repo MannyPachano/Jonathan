@@ -1,0 +1,19 @@
+---
+/**
+ * Sticky bottom CTA bar shown below 780px only. `bookHref` points at the on-page
+ * booking anchor when the current page already has the form, otherwise /lessons#book.
+ */
+interface Props {
+	/** Pages that render <BookingForm> can pass "#book" so the CTA scrolls instead of navigating. */
+	bookHref?: string;
+}
+const { bookHref = "/lessons#book" } = Astro.props;
+---
+
+<div class="mobile-cta-bar" id="mobile-cta-bar">
+	<a href={bookHref} class="mcb-book">Book Free Trial</a>
+	<a href="tel:7708317936" class="mcb-call" aria-label="Call Jonathan">
+		<span class="mcb-call-icon" aria-hidden="true">✆</span>
+		Call
+	</a>
+</div>

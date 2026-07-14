@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import BookingForm from "../components/BookingForm.astro";
 ---
 
 <BaseLayout
-	title='Lessons &amp; Pricing — Jonathan Zalzman Guitar Lessons | Suwanee, GA'
-	description='Guitar, bass, and ukulele lessons in Suwanee, GA — and online anywhere. $159/month for weekly 30-minute lessons. Free trial. Unlimited makeups. No registration fees.'
+	title='Lessons &amp; Pricing: Jonathan Zalzman Guitar Lessons | Suwanee, GA'
+	description='Guitar, bass, and ukulele lessons in Suwanee, GA, and online anywhere. $159/month for weekly 30-minute lessons. Free trial. Unlimited makeups. No registration fees.'
 	nav='lessons'
+	bookHref='#book'
 >
 <!-- ===================== PAGE HERO ===================== -->
 <section class="page-hero">
@@ -17,7 +19,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
     <div class="page-num"><span class="ix">03</span> Lessons &amp; Pricing</div>
     <h1>Pay for the <em>Lesson.</em><br>Not the <span class="accent">Frills.</span></h1>
-    <p class="page-lede">Simple monthly pricing. Free trial. No registration fees. <b>Unlimited makeups</b> with 24-hour notice. Lessons in Suwanee or online — your call.</p>
+    <p class="page-lede">Simple monthly pricing. Free trial. No registration fees. <b>Unlimited makeups</b> with 24-hour notice. Lessons in Suwanee or online, your call.</p>
   </div>
 </section>
 
@@ -25,7 +27,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <section class="page-section dark">
   <div class="wrap">
     <div class="section-eyebrow"><span class="num" style="background:var(--ember);color:var(--bone)">01</span> Choose a Plan</div>
-    <h2 class="section-title" style="margin-bottom:50px">Three Ways to Start.</h2>
+    <h2 class="section-title" style="margin-bottom:50px">Pick How You Start.</h2>
 
     <div class="plans-detailed">
       <div class="plan-card">
@@ -39,12 +41,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <li>Zero commitment afterward</li>
           <li>Available in-person or online</li>
         </ul>
-        <a href="#book" class="btn btn-ghost" style="justify-content:center">Book Trial →</a>
+        <a href="#book" data-plan="trial" class="btn btn-ghost" style="justify-content:center">Book Trial →</a>
       </div>
 
       <div class="plan-card feat">
         <div class="plan-label">// Weekly Lessons</div>
         <div class="plan-amount"><sup>$</sup>159<span class="per"> /month</span></div>
+        <p class="plan-savings">Save 20% vs. single lessons.</p>
         <p class="plan-desc">Weekly 30-minute lessons. The standard plan most students choose.</p>
         <ul class="plan-features">
           <li>Four 30-minute lessons per month</li>
@@ -55,26 +58,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <li>15% off accessories at Town Center Music</li>
           <li>No registration fees, no contracts</li>
         </ul>
-        <a href="#book" class="btn btn-primary" style="justify-content:center">Sign Up →</a>
+        <a href="#book" data-plan="monthly" class="btn btn-primary" style="justify-content:center">Start Free Trial →</a>
       </div>
 
       <div class="plan-card">
         <div class="plan-label">// À La Carte</div>
-        <div class="plan-amount"><sup>$</sup>40<span class="per"> /lesson</span></div>
+        <!-- TODO(jonathan): confirm à la carte price increase to $50 -->
+        <div class="plan-amount"><sup>$</sup>50<span class="per"> /lesson</span></div>
         <p class="plan-desc">Single 30-minute lesson, one at a time. No commitment.</p>
         <ul class="plan-features">
           <li>One 30-minute session, paid as you go</li>
           <li>Great for tune-ups or specific questions</li>
           <li>Audition or recital prep</li>
-          <li>Try-before-you-commit if free trial isn't enough</li>
           <li>In-person or online</li>
         </ul>
-        <a href="#book" class="btn btn-ghost" style="justify-content:center">Book One →</a>
+        <a href="#book" data-plan="alacarte" class="btn btn-ghost" style="justify-content:center">Book One →</a>
       </div>
     </div>
 
     <p style="margin-top:32px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:rgba(244,239,230,.55);text-align:center">
-      ★ Longer lesson formats (45 min, 60 min) available on request. Sibling and bundle discounts available — ask when you book.
+      ★ Longer lesson formats (45 min, 60 min) available on request. Sibling and bundle discounts available, ask when you book.
     </p>
   </div>
 </section>
@@ -85,7 +88,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="section-eyebrow" style="color:var(--ember-deep)"><span class="num" style="background:var(--ember-deep);color:var(--bone)">02</span> What to Expect</div>
     <h2 class="section-title" style="margin-bottom:30px">Inside a Lesson.</h2>
     <p style="max-width:60ch;font-size:17px;line-height:1.6;color:rgba(14,11,20,.78);margin:0 0 40px">
-      Every student's plan is different, but here's the general flow of what a typical lesson looks like — and what you'll get between them.
+      Every student's plan is different, but here's the general flow of what a typical lesson looks like, and what you'll get between them.
     </p>
 
     <div class="expect-grid">
@@ -97,7 +100,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="expect-cell">
         <span class="ec-num">// 5–15 MIN</span>
         <h3>Technique &amp; Theory</h3>
-        <p>A short, focused exercise on whatever skill we're building — picking accuracy, a new scale, a tricky chord change.</p>
+        <p>A short, focused exercise on whatever skill we're building, picking accuracy, a new scale, a tricky chord change.</p>
       </div>
       <div class="expect-cell">
         <span class="ec-num">// 15–28 MIN</span>
@@ -107,7 +110,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="expect-cell">
         <span class="ec-num">// 28–30 MIN</span>
         <h3>Plan the Week</h3>
-        <p>I send you a clear practice plan — what to work on, for how long, and which video/audio resources go with it.</p>
+        <p>I send you a clear practice plan, what to work on, for how long, and which video/audio resources go with it.</p>
       </div>
     </div>
 
@@ -131,13 +134,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p class="split-eyebrow">// In-Person Lessons</p>
         <h2>Suwanee, GA &amp; Surrounding Areas.</h2>
         <p>I teach in person in Suwanee, convenient to <b>Sugar Hill, Buford, Duluth, John's Creek, Lawrenceville, and Cumming</b>. Easy parking, dedicated lesson space, no waiting in a music-store showroom.</p>
-        <p>If you're in Gwinnett County or northern Fulton, in-person is usually the better experience — especially for younger students or absolute beginners. There's no substitute for being able to watch your hands and adjust on the spot.</p>
+        <p>If you're in Gwinnett County or northern Fulton, in-person is usually the better experience, especially for younger students or absolute beginners. There's no substitute for being able to watch your hands and adjust on the spot.</p>
       </div>
       <div class="split-block">
         <p class="split-eyebrow">// Online Lessons</p>
         <h2>Anywhere With a Camera.</h2>
-        <p>Online students get the same plan, the same materials, and the same teacher — just over video. Works great for students <b>outside the Atlanta area</b>, busy adults whose schedules can't handle the drive, traveling families, and college students home for breaks.</p>
-        <p>Some students do a hybrid — in-person most weeks, online when life gets busy. Totally fine, totally normal.</p>
+        <p>Online students get the same plan, the same materials, and the same teacher, just over video. Works great for students <b>outside the Atlanta area</b>, busy adults whose schedules can't handle the drive, traveling families, and college students home for breaks.</p>
+        <p>Some students do a hybrid, in-person most weeks, online when life gets busy. Totally fine, totally normal.</p>
       </div>
     </div>
   </div>
@@ -149,7 +152,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="section-eyebrow"><span class="num" style="background:var(--ember);color:var(--bone)">03</span> Before Your First Lesson</div>
     <h2 class="section-title" style="margin-bottom:30px">What You'll Need.</h2>
     <p style="max-width:60ch;font-size:17px;line-height:1.6;color:rgba(244,239,230,.75);margin:0 0 20px">
-      Don't go gear shopping before our first lesson. <b>Seriously — wait.</b> A lot of beginners buy the wrong setup based on bad internet advice. Better to have a 15-minute conversation first.
+      Don't go gear shopping before our first lesson. <b>Seriously, wait.</b> A lot of beginners buy the wrong setup based on bad internet advice. Better to have a 15-minute conversation first.
     </p>
     <p style="max-width:60ch;font-size:17px;line-height:1.6;color:rgba(244,239,230,.75);margin:0 0 30px">
       That said, here's what you'll generally need to get started:
@@ -159,12 +162,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="gear-item">
         <span class="gear-tag">Required</span>
         <h3>An Instrument</h3>
-        <p>Any reasonable acoustic, electric, bass, or ukulele works to start. If you're buying one, ask me first — I'll send a few specific recommendations at your budget. No need to spend big.</p>
+        <p>Any reasonable acoustic, electric, bass, or ukulele works to start. If you're buying one, ask me first, I'll send a few specific recommendations at your budget. No need to spend big.</p>
       </div>
       <div class="gear-item">
         <span class="gear-tag">Required</span>
         <h3>A Tuner</h3>
-        <p>A clip-on tuner ($15–$20) or a free tuner app on your phone. Playing in tune is non-negotiable — even from lesson one.</p>
+        <p>A clip-on tuner ($15–$20) or a free tuner app on your phone. Playing in tune is non-negotiable, even from lesson one.</p>
       </div>
       <div class="gear-item">
         <span class="gear-tag">Helpful</span>
@@ -184,7 +187,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="gear-item">
         <span class="gear-tag">Universal</span>
         <h3>Patience &amp; 15 Minutes a Day</h3>
-        <p>The biggest predictor of student progress isn't talent or gear — it's consistency. Fifteen minutes daily beats two hours on Sunday every single time.</p>
+        <p>The biggest predictor of student progress isn't talent or gear, it's consistency. Fifteen minutes daily beats two hours on Sunday every single time.</p>
       </div>
     </div>
   </div>
@@ -194,35 +197,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <section class="page-section" id="book">
   <div class="wrap">
     <div class="section-eyebrow" style="color:var(--ember-deep)"><span class="num" style="background:var(--ember-deep);color:var(--bone)">04</span> Get Started</div>
-    <h2 class="section-title" style="margin-bottom:30px">Ready to Book?</h2>
+    <h2 class="section-title" style="margin-bottom:30px">Book Your Free Lesson.</h2>
     <p style="max-width:60ch;font-size:17px;line-height:1.6;color:rgba(14,11,20,.78);margin:0 0 36px">
-      Reach out by email or phone — whichever is easier. The first lesson is free, and there's no obligation after.
+      Fill this out and I'll be in touch to set up your free 30-minute trial. The first lesson is free, and there's no obligation after.
     </p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px" class="contact-grid">
-      <a href="mailto:lessons@jonathanzalzman.com" style="display:block;padding:36px 32px;border:2px solid var(--ink);border-radius:3px;background:var(--bone);transition:transform .2s,box-shadow .2s">
-        <div style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--ember-deep);text-transform:uppercase;margin-bottom:12px">// Email</div>
-        <div style="font-family:var(--display);font-size:clamp(22px,2.6vw,30px);letter-spacing:.005em;text-transform:uppercase;color:var(--ink);margin-bottom:8px;word-break:break-all">lessons@<wbr>jonathanzalzman.com</div>
-        <div style="font-size:14px;color:rgba(14,11,20,.65)">Best for detailed questions or scheduling.</div>
-      </a>
+    <BookingForm />
 
-      <a href="tel:7708317936" style="display:block;padding:36px 32px;border:2px solid var(--ink);border-radius:3px;background:var(--ink);color:var(--bone);transition:transform .2s,box-shadow .2s">
-        <div style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--neon);text-transform:uppercase;margin-bottom:12px">// Phone</div>
-        <div style="font-family:var(--display);font-size:clamp(28px,3.4vw,42px);letter-spacing:.02em;text-transform:uppercase;margin-bottom:8px">(770) 831-7936</div>
-        <div style="font-size:14px;color:rgba(244,239,230,.7)">Best for quick questions or to schedule on the spot.</div>
-      </a>
+    <div class="contact-alt">
+      <p class="contact-alt-head">// Prefer to just call or email?</p>
+      <div class="contact-alt-row">
+        <a href="tel:7708317936">Call (770) 831-7936</a>
+        <span class="sep">·</span>
+        <a href="mailto:lessons@jonathanzalzman.com">lessons@jonathanzalzman.com</a>
+      </div>
     </div>
-
-    <style>
-      @media (max-width: 680px){
-        .contact-grid{grid-template-columns:1fr !important}
-      }
-      .contact-grid > a:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ember)}
-    </style>
-
-    <p style="margin-top:36px;font-size:14px;color:rgba(14,11,20,.6);max-width:60ch">
-      <b>What to mention when you reach out:</b> instrument(s) you're interested in, age (or your child's age) and rough experience level, whether you prefer in-person or online, and a couple of artists or songs you'd love to learn. That's usually enough to get a great first lesson queued up.
-    </p>
   </div>
 </section>
 </BaseLayout>

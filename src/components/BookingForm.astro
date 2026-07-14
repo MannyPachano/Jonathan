@@ -1,0 +1,123 @@
+---
+/**
+ * Netlify Forms trial-booking form. The site deploys via Netlify (see netlify.toml),
+ * so `data-netlify` + the hidden `form-name` input let Netlify detect and capture it
+ * at build time. On success Netlify redirects to /thanks (action attribute).
+ *
+ * The optional `plan` prop preselects the Plan <select>. A small script in
+ * public/js/site.js also sets it live when a pricing CTA is clicked (data-plan).
+ */
+interface Props {
+	plan?: "trial" | "monthly" | "alacarte";
+	/** Optional heading rendered above the fields. */
+	heading?: string;
+}
+
+const { plan = "trial", heading } = Astro.props;
+
+const planValues = {
+	trial: "Free trial lesson",
+	monthly: "Weekly lessons ($159/mo)",
+	alacarte: "Single lesson ($50)",
+};
+const selectedPlan = planValues[plan];
+---
+
+<div class="booking">
+	{heading && <h3 class="booking-heading">{heading}</h3>}
+	<form
+		class="booking-form"
+		name="trial-booking"
+		method="POST"
+		action="/thanks"
+		data-netlify="true"
+		netlify-honeypot="bot-field"
+	>
+		<input type="hidden" name="form-name" value="trial-booking" />
+		<p class="booking-hp">
+			<label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+		</p>
+
+		<div class="bf-grid">
+			<div class="bf-field">
+				<label for="bf-name">Name</label>
+				<input id="bf-name" name="name" type="text" required autocomplete="name" />
+			</div>
+
+			<div class="bf-field">
+				<label for="bf-email">Email</label>
+				<input id="bf-email" name="email" type="email" required autocomplete="email" />
+			</div>
+
+			<div class="bf-field">
+				<label for="bf-phone">Phone <span class="bf-opt">(optional)</span></label>
+				<input id="bf-phone" name="phone" type="tel" autocomplete="tel" />
+			</div>
+
+			<div class="bf-field">
+				<label for="bf-age">Student age</label>
+				<select id="bf-age" name="student-age" required>
+					<option value="" disabled selected>Select one</option>
+					<option>Under 10</option>
+					<option>10-13</option>
+					<option>14-17</option>
+					<option>18+</option>
+				</select>
+			</div>
+
+			<div class="bf-field">
+				<label for="bf-instrument">Instrument</label>
+				<select id="bf-instrument" name="instrument" required>
+					<option value="" disabled selected>Select one</option>
+					<option>Guitar</option>
+					<option>Bass</option>
+					<option>Ukulele</option>
+					<option>Not sure yet</option>
+				</select>
+			</div>
+
+			<div class="bf-field">
+				<label for="bf-experience">Experience level</label>
+				<select id="bf-experience" name="experience" required>
+					<option value="" disabled selected>Select one</option>
+					<option>Never played</option>
+					<option>Some basics</option>
+					<option>Intermediate</option>
+					<option>Advanced</option>
+					<option>Coming back after a long break</option>
+				</select>
+			</div>
+
+			<fieldset class="bf-field bf-field-wide bf-radio">
+				<legend>Lesson format</legend>
+				<label class="bf-radio-opt"><input type="radio" name="format" value="In-person (Suwanee)" required /> In-person (Suwanee)</label>
+				<label class="bf-radio-opt"><input type="radio" name="format" value="Online" /> Online</label>
+				<label class="bf-radio-opt"><input type="radio" name="format" value="Either works" /> Either works</label>
+			</fieldset>
+
+			<div class="bf-field">
+				<label for="bf-plan">Plan</label>
+				<select id="bf-plan" name="plan" required>
+					<option value="Free trial lesson" selected={selectedPlan === "Free trial lesson"}>Free trial lesson</option>
+					<option value="Weekly lessons ($159/mo)" selected={selectedPlan === "Weekly lessons ($159/mo)"}>Weekly lessons ($159/mo)</option>
+					<option value="Single lesson ($50)" selected={selectedPlan === "Single lesson ($50)"}>Single lesson ($50)</option>
+				</select>
+			</div>
+
+			<div class="bf-field">
+				<label for="bf-times">Best days/times <span class="bf-opt">(optional)</span></label>
+				<input id="bf-times" name="best-times" type="text" placeholder="e.g. weekday evenings, Saturday mornings" />
+			</div>
+
+			<div class="bf-field bf-field-wide">
+				<label for="bf-goals">What do you want to be able to play? <span class="bf-opt">(optional)</span></label>
+				<textarea id="bf-goals" name="goals" rows="3" placeholder="A song, a band, a style. Anything."></textarea>
+			</div>
+		</div>
+
+		<button type="submit" class="btn btn-primary bf-submit">
+			Book My Free Lesson <span class="arrow">→</span>
+		</button>
+		<p class="bf-reassure">Free first lesson. No card required. Usually a reply within 24 hours.</p>
+	</form>
+</div>

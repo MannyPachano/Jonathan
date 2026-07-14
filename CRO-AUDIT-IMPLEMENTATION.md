@@ -1,197 +1,166 @@
-# CRO / Copy / UX Implementation Spec
+# Copy Rewrite Spec: Plain Language Pass
 **Project:** Jonathan Zalzman Guitar Lessons (Astro 4 + Netlify)
 **For:** Claude Code
-**Goal:** Convert casual visitors into booked trial lessons. Ship tasks in the order listed.
+**Round 2.** Round 1 (booking form, mobile nav, sticky CTA, pricing math, em dash purge) is **done and live.** Do not redo it.
 
 ---
 
-## Ground rules (apply to every task)
+## The one job
 
-1. **Zero em dashes (`—`) in any user-facing copy.** There are currently ~100 across `src/pages/*.astro`. Replace with a comma, a period, a colon, or a rewrite. Do not swap in en dashes as a loophole. Hyphens in compound words (`30-minute`, `in-person`) are fine.
-2. **Do not use these phrases anywhere on the site:** "meets you where you are" / "meet you where you are", "no pressure, no commitment", "life happens", "bring the curiosity, I'll bring the roadmap", "the stuff I teach is the stuff I do" (may appear ONCE, not twice).
-3. **Do not invent testimonials, names, numbers, or credentials.** Where real data is required and unavailable, leave a clearly-marked `TODO(jonathan):` comment in the source and use the existing placeholder.
-4. **Color rule:** `--ember` (#FF5B2E) is the ONLY color used for clickable actions. `--neon` (#C8FF3D) is accent/status only and must never be a button background or button hover state.
-5. Preserve the existing design system (Anton display / Bricolage body / JetBrains Mono, numbered "track list" sections, poster aesthetic). This spec sharpens it, it does not replace it.
-6. Run `npm run build` after each task group and confirm it passes.
+**Every headline on this site is a poem. None of them are sentences.**
 
----
+`Pay for the Lesson. Not the Frills.` is the pricing page H1. It is meaningless. What are "the frills"? Nobody knows. It reads like it was written to sound like something rather than to say something.
 
-## TASK 1 — Build a real booking form (HIGHEST PRIORITY)
+The whole site does this. `The Long Way Around a Guitar.` `A Guitar Lesson From the Stage.` `From the Folks Who Showed Up.` `Everything You're About to Ask Me.` `Bring Your Sound. I'll Help You Find It.` These are moods, not information. A parent in Suwanee googling "guitar lessons near me" reads them and learns nothing.
 
-### Problem
-Every CTA on the site says "Book a Free Trial" and links to `/lessons#book`. That anchor (`src/pages/lessons.astro`, lines ~194-227) contains only a `mailto:` card and a `tel:` card, followed by a paragraph instructing the visitor to compose an email containing their instrument, age, experience level, lesson format, and desired songs. The site promises a booking and delivers homework. `mailto:` frequently opens nothing on mobile.
+**Rewrite every one so it says a literal, true, useful thing.**
 
-### Build
+### Rules
 
-Create `src/components/BookingForm.astro`. Use **Netlify Forms** (the site already deploys via Netlify; see `netlify.toml`).
-
-Requirements:
-- `<form name="trial-booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">` with the required hidden `<input type="hidden" name="form-name" value="trial-booking" />` and a visually-hidden honeypot field.
-- Accept an optional prop `plan?: "trial" | "monthly" | "alacarte"` (default `"trial"`) that preselects the Plan field.
-- Fields:
-  | Field | Type | Required | Options / notes |
-  |---|---|---|---|
-  | Name | text | yes | |
-  | Email | email | yes | |
-  | Phone | tel | no | |
-  | Student age | select | yes | `Under 10`, `10-13`, `14-17`, `18+` |
-  | Instrument | select | yes | `Guitar`, `Bass`, `Ukulele`, `Not sure yet` |
-  | Experience level | select | yes | `Never played`, `Some basics`, `Intermediate`, `Advanced`, `Coming back after a long break` |
-  | Lesson format | radio | yes | `In-person (Suwanee)`, `Online`, `Either works` |
-  | Plan | select | yes | `Free trial lesson`, `Weekly lessons ($159/mo)`, `Single lesson ($40)` |
-  | Best days/times | text | no | placeholder: `e.g. weekday evenings, Saturday mornings` |
-  | What do you want to be able to play? | textarea | no | placeholder: `A song, a band, a style. Anything.` |
-- Submit button label: **`Book My Free Lesson →`** (btn-primary, ember, full-width on mobile).
-- Directly under the button, small mono text: `Free first lesson. No card required. Usually a reply within 24 hours.`
-- On success, redirect to a new page `src/pages/thanks.astro` (add `action="/thanks"` to the form). The thanks page should use `BaseLayout`, match the poster aesthetic, confirm what happens next, and link back to `/` and `/teach`.
-- Style the form using existing CSS variables in `src/styles/site.css`. Add a `/* ============ BOOKING FORM ============ */` block. Inputs: bone background, 2px ink border, 3px radius, mono labels uppercase with `.18em` letter-spacing, matching the existing card treatment. Ensure focus states are visible (`outline:2px solid var(--ember); outline-offset:2px`) for accessibility.
-- Must be fully usable at 375px wide.
-
-### Wire it up
-- `src/pages/lessons.astro` `#book` section: put `<BookingForm />` as the primary element. Keep the email and phone cards but **demote them**: move them below the form under a small heading `// Prefer to just call or email?` and reduce their visual weight (single row, smaller type).
-- Delete the "What to mention when you reach out" paragraph (lessons.astro ~line 223). The form now collects all of it.
-- `src/pages/index.astro` FINAL CTA section (`#book`, ~line 482): embed `<BookingForm />` **inline** so a homepage visitor never has to navigate away to book.
-- The three pricing cards on `lessons.astro` should link to `#book` and pass plan context (e.g. `href="#book?plan=monthly"` is not enough on its own; add a small client script in `public/js/site.js` that reads a `data-plan` attribute on the clicked pricing CTA, scrolls to `#book`, and sets the Plan `<select>` value accordingly).
+1. **A headline must survive the "so what does that mean" test.** If a reader can ask "...meaning what?" the headline failed. `Pay for the Lesson. Not the Frills.` fails. `$159/month. No registration fee, no contract.` passes.
+2. **No metaphors, no wordplay, no abstractions.** Delete anything that gestures at a feeling instead of stating a fact. No "the spark," no "the chase," no "the roadmap," no "the pocket," no "the language of the greats."
+3. **No fake-punchy fragments.** The site's tic is `Two Words. Two More Words.` It appears in nearly every section title. Kill the pattern. Write real sentences, or plain noun phrases. Vary the length so it doesn't sound machine-generated.
+4. **State the concrete noun.** Prices, minutes, ages, towns, instruments, days. Specifics build trust; vibes do not.
+5. **No em dashes.** Still zero. Do not reintroduce them.
+6. **Keep the visual design exactly as it is.** Anton display type, the poster layout, the numbered sections, the ember/bone/ink palette, the `// mono` eyebrows, the vinyl "Side A" card. **This is a copy pass only.** Do not touch the CSS except where a rewrite needs a longer or shorter line to fit.
+7. **Do not invent facts.** If a rewrite needs a number you don't have, leave `TODO(jonathan):`.
+8. Where an H1 uses `<em>` and `<span class="accent">` for emphasis, keep those spans and re-apply them to the new words. Don't strip the styling hooks.
 
 ---
 
-## TASK 2 — Fix mobile navigation + add sticky mobile CTA
+## TASK 1: Homepage (`src/pages/index.astro`)
 
-### 2a. Broken mobile nav
-`src/styles/site.css` line ~82:
-```css
-@media (max-width:780px){
-  .nav-links a:not(.nav-cta){display:none}
-}
+| Line | Element | Current | Replace with |
+|---|---|---|---|
+| 36-40 | **H1** | Learn Guitar / From a Working / Musician. | **Keep it.** It is the one headline on the site that states a real, specific claim. Leave the `.l1/.l2/.l3` spans intact. |
+| 42-44 | Hero sub | "...Tell me the song you wish you could play, and I'll build you the plan to play it." | Cut the last clause, it's the poetic one. Replace whole paragraph: `Private guitar, bass, and ukulele lessons for ages 6 and up. In person in Suwanee, or online anywhere. I've played Atlanta stages for ten years and taught for five. First lesson is free.` |
+| 86-87 | Setlist card label / title | `// Side A · Now Teaching` / `Tonight's Setlist` | Keep `// Side A · Now Teaching` (it's a design element, and it's honest). Change `Tonight's Setlist` to **`What Students Are Learning`**. |
+| 120 | Section 01 title | A Guitar Lesson From the Stage. | **`I Teach What I Actually Play.`** |
+| 152 | Bio sidebar h3 | `// Credentials & Cred` | **`// Background`** ("Cred" is filler.) |
+| 201 | Section 02 title | Bring Your Sound. I'll Help You Find It. | **`Nine Styles. Pick One or Mix Them.`** |
+| 264 | Inline CTA h2 | Don't See Your Style? Ask Me. | Keep. It's plain and it's a real question. |
+| 282-283 | Divider quote | "The stuff I teach is the stuff I do every weekend on stage." | Keep. It's literal and it's the best line on the site. |
+| 295 | Section 03 title | Three Steps. No Sign-Up Fee. | **`How to Start Lessons`** |
+| 325 | Parents section title | Thinking About Lessons for Your Kid? | Keep. Plain question, right audience. |
+| 355 | Section 04 title | **Pay for the Lesson. Not the Frills.** | **`Pricing`** as the title, and put the substance in the deck below it: `$159 a month for a weekly lesson. No registration fee, no contract, no annual charge. Cancel any time.` |
+| 411 | Section 05 title | From the Folks Who Showed Up. | **`What Students Say`** |
+| 486 | Band section h2 | I Don't Just *Teach* Guitar. I Play It For a Living. | **`I Play Guitar for a Living.`** Keep the `<em>` hook on "Play". The "I don't just X, I Y" construction is the single most overused AI sentence shape. Kill it. |
+| 487 | Band paragraph | "Want to know what your teacher actually sounds like? ..." | Drop the rhetorical question opener. Start with the fact: `I lead Free Hat, an Atlanta band with three releases on Spotify and a decade of live shows. When I demo a technique in a lesson, it's one I use on stage.` |
+| 513 | Section 06 title | Questions I Get Every Week | Keep. |
+| 555 | Final CTA eyebrow | Ready When You Are | **`Get Started`** |
+| 557 | Final CTA h2 | Book Your *Free* Lesson. | Keep. It is an instruction, which is what a CTA should be. |
+
+Also on this page: audit the **nine style-card descriptions** (lines ~205-260). Several are poetry. Rewrite these specifically:
+- Jazz & Fusion: `...the language of the greats, without the gatekeeping.` → say what you actually teach: chord melody, soloing over changes, modal playing.
+- Funk & Groove: `...finding the pocket.` → `...playing tight rhythm parts that lock in with a drummer.`
+- Improvisation: `Soloing as a language, not a shape.` → this is the "not X, but Y" tic again. Replace with a literal description of what an improv lesson covers.
+- Prog & Shred: `The technique to play anything you imagine.` → overpromise + vague. State the techniques.
+- Theory: `Build the kind of ear that lets you learn songs by feel.` → `Learn to figure out songs by ear instead of hunting for tabs.`
+
+---
+
+## TASK 2: Lessons page (`src/pages/lessons.astro`)
+
+| Line | Element | Current | Replace with |
+|---|---|---|---|
+| 7 | `<title>` | Lessons & Pricing: ... | Keep. |
+| 21 | **H1** | **Pay for the *Lesson.* Not the *Frills.*** | **`Lessons and Pricing`** as the H1. If that feels too bare for the poster layout, use **`$159 a Month. Free First Lesson.`** and put the emphasis spans on `Free`. Either is fine; both say a real thing. Pick the second one. |
+| 22 | Page lede | Simple monthly pricing. Free trial. No registration fees... | `Weekly 30-minute lessons for $159 a month. Your first lesson is free. No registration fee, no contract. Miss a lesson? Reschedule free with 24 hours notice. In person in Suwanee or online.` |
+| 30 | Section 01 title | Pick How You Start. | **`Three Plans`** |
+| 89 | Section 02 title | Inside a Lesson. | **`What a Lesson Looks Like`** |
+| 118 | h3 | `// Between Lessons` | Keep. |
+| 135 | Split h2 | Suwanee, GA & Surrounding Areas. | **`In-Person Lessons in Suwanee`** |
+| 141 | Split h2 | **Anywhere With a Camera.** | **`Online Lessons Anywhere`** |
+| 153 | Section 03 title | What You'll Need. | **`What You'll Need Before Lesson One`** |
+| 189 | Gear item h3 | **Patience & 15 Minutes a Day** | This one's fine, but the body copy under it is a sermon. Trim to the fact: `Fifteen minutes a day beats two hours on Sunday. Consistency is what actually moves students forward.` |
+| 200 | Section 04 title | Book Your Free Lesson. | Keep. |
+
+---
+
+## TASK 3: About page (`src/pages/about.astro`)
+
+| Line | Element | Current | Replace with |
+|---|---|---|---|
+| 21 | **H1** | **The Long Way *Around* a Guitar.** | **`About Jonathan`** is too bare for a hero. Use **`Ten Years on Stage. Five Years Teaching.`** Put the accent span on `Five Years Teaching`. It's specific, true, and tells a parent exactly what they want to know. |
+| 22 | Page lede | "...The short version is on the homepage. Here's the long one." | Cut the cute meta-framing. `I'm a working guitarist in Atlanta and a private teacher in Suwanee. Here's how I got here and how I teach.` |
+| 57 | Section title | **The Path Here.** | **`Timeline`** |
+| 64 | Timeline h3 | **The Spark** | **`Started Playing at 13`** (state the fact; the Buckethead story is in the body copy and that's where it belongs) |
+| 72 | Timeline h3 | The Atlanta Years | Fine, but make it concrete if a date range exists: `Playing Atlanta Venues` |
+| 141 | Section title | How I Teach. | Keep. It's plain. |
+| 177 | Split h2 | **The Players Behind My Playing.** | **`Guitarists Who Influenced Me`** |
+| 199 | Split h2 | **The Tools of the Trade.** | **`My Gear`** |
+| 223 | Inline CTA h2 | **That's My Story. What's Yours?** | This is a greeting card. Replace: **`Want to Start Lessons?`** with the body copy stating the free first lesson. |
+
+Also: the About body copy is the most poetic on the site. Go through it and cut these specifically:
+- `"I picked up a guitar at thirteen, the night I saw Buckethead at the Masquerade in Atlanta, and I haven't put it down since."` — the "haven't put it down since" is a cliché. The Buckethead detail is great and true; keep the fact, drop the flourish.
+- `"The years since have been a chase: shred, funk, jazz fusion..."` — "have been a chase" is poetry. Say: `Since then I've studied shred, funk, jazz fusion, progressive rock, and metal.`
+- `"What I want most is to pass on the spark"` — cut entirely. Replace with something literal about what he wants students to be able to do.
+
+---
+
+## TASK 4: What I Teach page (`src/pages/teach.astro`)
+
+| Line | Element | Current | Replace with |
+|---|---|---|---|
+| 19 | **H1** | **Bring Your *Sound.* I'll Help You *Find It.*** | **`What I Teach`** is accurate but flat for a hero. Use **`Nine Styles. One Plan Built Around You.`** Accent span on `One Plan Built Around You`. |
+| 20 | Page lede | "...Here's the full menu, pick one, pick a few, or come in unsure..." | `Rock, blues, funk, jazz, fusion, prog, shred, metal, theory, bass, ukulele, songwriting, and improvisation. Students range from age 6 to 60, and from total beginners to advanced players. Not sure what you want? That's normal. We'll figure it out in the first lesson.` |
+| 30 | Section h2 | Nine Styles, One Plan Per Student. | Redundant with the new H1. Change to **`How the Plan Gets Built`** and let the body explain it. |
+| 180 | Inline CTA h3 | Don't See Your Thing? Just Ask. | Keep. |
+
+The nine long style descriptions on this page have the same poetry problem as the homepage cards. Pass through all of them: every description should name **specific techniques, specific songs, or specific bands.** Cut any sentence that describes a feeling.
+
+---
+
+## TASK 5: FAQ page (`src/pages/faq.astro`)
+
+| Line | Element | Current | Replace with |
+|---|---|---|---|
+| 19 | **H1** | **Everything *You're* About to *Ask Me.*** | **`Frequently Asked Questions`** is fine and honest, but for the hero use **`Questions I Get Every Week`** and accent `Every Week`. (Match the homepage FAQ section title.) |
+| 20 | Page lede | "Six categories. Thirty-ish questions. If yours isn't here, just email or call, I answer either fast." | `Pricing, scheduling, gear, what to expect, and what I teach. If your question isn't answered here, email or call me and I'll get back to you the same day.` **TODO(jonathan): confirm "same day" is true. If not, use "within 24 hours."** |
+| 205 | Inline CTA h3 | Still Got Questions? | Keep. |
+
+Then read every FAQ answer. They're mostly good (they're literal by nature) but strip any remaining flourishes.
+
+---
+
+## TASK 6: Thanks page (`src/pages/thanks.astro`)
+
+| Line | Element | Current | Replace with |
+|---|---|---|---|
+| 18 | **H1** | **Got It. Talk *Soon.*** | **`Request Received`** with accent on `Received`. |
+| 19 | Page lede | "Thanks for reaching out. Your request is in, and I read every one myself. Here's what happens next." | `Thanks for reaching out. I read every message myself. Here's what happens next.` (Cut "Your request is in" — redundant with the H1.) |
+| 26 | Section title | Three Quick Steps. | **`What Happens Next`** (the eyebrow already says this; change the eyebrow to `// 01` and let the H2 carry it, or just retitle to **`Next Steps`**) |
+| 31 | Step h3 | I Reply | Make it specific: **`I Email You Back`** and state the window in the body. **TODO(jonathan): within 24 hours?** |
+
+---
+
+## TASK 7: Nav, footer, small strings
+
+- `src/components/Footer.astro`, bottom bar: `Site built with care · Strings sold separately`. Cute, and it's the only place cute is allowed. **Keep it.**
+- `src/components/Footer.astro`: everything else is already literal. No changes.
+- Check the `MobileCTABar` and `BookingForm` button labels are plain instructions (`Book Free Trial`, `Book My Free Lesson →`). They are. No changes.
+
+---
+
+## TASK 8: Leftover bug from round 1
+
+`src/pages/index.astro` line ~459 ships this to production inside `dist/index.html`:
+
+```html
+<p class="quotes-google" hidden>
+  <a href="TODO(jonathan): Google reviews URL" ...>See all reviews on Google →</a>
+</p>
 ```
-Below 780px, About / What I Teach / Lessons / FAQ are **all hidden with no hamburger**. Mobile visitors can reach exactly one page. This is a bug.
 
-**Fix:** Add a hamburger button to `src/components/Nav.astro` (visible only below 780px, `aria-expanded`, `aria-controls`, `aria-label="Menu"`). It toggles a full-screen or slide-down panel containing About, What I Teach, Lessons, FAQ, plus the ember CTA. Toggle logic goes in `public/js/site.js`. Close on link click, on Escape, and on outside click. Respect `prefers-reduced-motion` (an existing block is at site.css ~line 742).
-
-### 2b. Sticky mobile CTA bar
-New component `src/components/MobileCTABar.astro`, rendered from `src/layouts/BaseLayout.astro` on every page. Below 780px only, fixed to the bottom of the viewport:
-- Left: ember `Book Free Trial` button linking to `/lessons#book` (or `#book` when already on a page that has the form).
-- Right: icon/short button `Call` → `tel:7708317936`.
-- Add matching `padding-bottom` to `footer` so the bar never covers footer content.
-- Hide the bar when the `#book` form is already in the viewport (IntersectionObserver in `site.js`).
+It's behind `hidden` so no user sees it, but a placeholder string is in the shipped HTML. **Remove the `href` attribute entirely** (or comment out the whole `<p>`) until a real URL exists. Same for the commented-out `href="TODO(jonathan): Google review URL"` on line ~426.
 
 ---
 
-## TASK 3 — Fix the pricing/offer math
+## TASK 9: Verification
 
-### Problem
-`$159/mo ÷ 4 lessons = $39.75/lesson`. À la carte is `$40/lesson`. **The monthly commitment saves the customer 25 cents.** There is no rational reason to commit to the plan the site is pushing.
-
-### Fix
-This is a business decision, so implement the default below and flag it:
-
-- Raise à la carte from **$40 → $50 per lesson** in `src/pages/index.astro` (pricing section, ~line 349) and `src/pages/lessons.astro` (~line 63), plus the `description` meta on lessons.astro and anywhere else `$40` appears (grep for `40`).
-- Add a savings line to the featured Weekly card: `Save 20% vs. single lessons.` in mono, ember.
-- Leave `TODO(jonathan): confirm à la carte price increase to $50` as an HTML comment beside each change so it's easy to revert.
-
-### Also
-Delete this bullet from the À La Carte card (`lessons.astro` ~line 69): `Try-before-you-commit if free trial isn't enough.` It is an escape hatch on the card you least want chosen.
-
----
-
-## TASK 4 — Testimonials
-
-### Problem
-`src/pages/index.astro` ~lines 373-398. All three testimonials are anonymous: "Parent of a 12-year-old student", "Adult Student · 2 years", "Teen Student · 16". Anonymous testimonials read as fabricated and reduce trust rather than building it.
-
-### Fix
-- Restructure the `.quote-attr` markup to support: **First name + Last initial**, town, and an optional avatar image (`src/assets/`). Add optional star-count and source (e.g. "Google Review") with a link.
-- Do **not** invent names. Leave the existing quote text, replace attribution with `TODO(jonathan): real name + town, or link to the Google review` in an HTML comment, and keep the current placeholder text rendering until Jonathan supplies real data.
-- If a Google Business Profile exists, add a `See all reviews on Google →` text link under the grid (leave the `href` as `TODO(jonathan)`).
-
----
-
-## TASK 5 — Copy rewrites
-
-### 5a. Hero (`src/pages/index.astro`, lines 34-58)
-
-Keep the H1 (`Learn Guitar / From a Working / Musician.`). It works.
-
-Replace the sub-headline (line 41) with:
-> Private guitar, bass, and ukulele lessons in Suwanee, or online anywhere. Ten years on Atlanta stages, five years teaching. Tell me the song you wish you could play, and I'll build you the plan to play it.
-
-Add a micro-trust line in mono, directly beneath the `.cta-row` (above or replacing the existing `.trust` row, your call, but keep the `Ages 6+ / In-Person & Online / All Levels` chips somewhere):
-> First lesson free. No registration fee. No contract. Cancel any time.
-
-Change the secondary hero CTA from `Meet Jonathan` (`/about`) to **`Watch Me Play →`**, opening a video. See Task 7. If no video is available yet, point it at the YouTube channel `https://www.youtube.com/@freehatmusic` with `target="_blank" rel="noopener"` and leave a `TODO(jonathan): swap for an embedded 45s teaching/playing clip`.
-
-### 5b. Hero setlist card (lines 62-100)
-- Trim the tracklist from six items to four (keep A1 Rock & Blues, A2 Funk Rhythm & Groove, A3 Lead & Improvisation, B1 Songwriting).
-- Remove `$159/mo` from `.sc-foot` (line 97). Price does not belong in decorative furniture. Keep `Recorded live · Suwanee GA`.
-
-### 5c. Section titles: break the monotony
-Every section title on the site is a short punchy sentence ending in a period. The uniform rhythm is itself an "AI-written" tell. Rewrite **at least three** of these across the site so the cadence varies (use a question, a fragment, or a longer line):
-- `Simple. Flexible. No Tricks.` (index, how-it-works, line 285) → e.g. `Three steps. No sign-up fee.` or a question form.
-- `The FAQ.` (index, line 444) → something with more content, e.g. `Questions I Get Every Week`
-- `Three Ways to Start.` (lessons.astro, line 28)
-- `One Teacher. Nine Styles.` (teach.astro, line 30)
-
-### 5d. Global phrase purge
-Grep and rewrite every instance:
-- `"meets you where you are"` / `"meet you where you are"` — **6 occurrences** (about.astro ×2, index.astro ×2, faq.astro ×1, teach.astro ×1). Keep at most one, rewritten.
-- The line `"The stuff I teach is the stuff I do every weekend"` appears **twice on the homepage**: the divider quote (line 273) and the band section (line 418). Keep it in the divider quote only; rewrite the band paragraph.
-- `"No pressure, no commitment."` (index.astro line 293)
-- `"If you bring the curiosity, I'll bring the roadmap."` (index.astro line 130)
-- `"Life happens"` (index.astro line 463)
-
-### 5e. The missing audience: the parent buyer
-The site is written almost entirely for a young player who wants to shred. A large share of traffic is a parent in Suwanee searching "guitar lessons near me" for a 9-year-old. She does not care about Phish tributes or jamtronica. She cares: *Is he patient? Is my kid safe? Will they stick with it? Where is it? What does it cost?*
-
-Add **one dedicated block on the homepage** (place it between the "How It Works" and "Pricing" sections) speaking directly to parents. Cover: lessons for ages 6+, what a first month looks like for a total beginner, how progress gets communicated to parents, quarterly student performances, and where lessons happen. Keep the poster aesthetic, keep it short (a 3-column cell grid matching `.expect-grid` would work). Draft the copy in Jonathan's voice: plainspoken, no hype, no em dashes.
-
-### 5f. Button label
-`Sign Up →` on the featured pricing card (index.astro line 344, lessons.astro line 58) implies a credit card. The trial is free. Change both to **`Start Free Trial →`**.
-
-Also change the final CTA headline (index.astro line 488) from `Let's Make Some Noise.` (a vibe, not an action) to **`Book Your Free Lesson.`**
-
----
-
-## TASK 6 — CTA placement
-
-Currently the homepage has a **five-screen dead zone**: after the hero CTA, the next clickable CTA is the pricing section. Between them sit About, credentials, nine style cards, a photo divider, and three how-it-works steps.
-
-Add CTAs at these positions:
-
-| Location | Type | Copy |
-|---|---|---|
-| After the 9-card styles grid (index.astro, after line 258) | **New inline strip** (reuse the `.inline-cta` class already in site.css ~line 1052) | `Don't see your style? Ask me. The first lesson is free.` + `Book a Free Trial →` |
-| After the testimonials grid (index.astro, after line 398) | Secondary text link, ember | `See lesson plans and pricing →` → `/lessons` |
-| Final CTA section (index.astro, ~482) | Primary | Inline `<BookingForm />` (Task 1) replaces the mailto/tel buttons; keep those as small secondary links below |
-
----
-
-## TASK 7 — Video proof
-
-A guitar teacher's site with no video is leaving conversion on the table. Nobody buys lessons from a person they've never heard play.
-
-- Add a lightweight, click-to-load YouTube embed (facade pattern: a static poster image + play button that swaps in the iframe on click, so it costs nothing on initial load). Do not load the YouTube iframe on page load.
-- Placement: the hero secondary CTA (`Watch Me Play →`) opens it in a modal/lightbox, and/or a dedicated block in the Band section of the homepage.
-- Leave `TODO(jonathan): supply a 45-90 second clip, ideally teaching, not just performing` and default to a video from `https://www.youtube.com/@freehatmusic`.
-
----
-
-## TASK 8 — Color discipline
-
-In `src/styles/site.css`:
-- `.nav-cta:hover` (line ~81) currently sets `background:var(--neon)`. **Remove.** Hover should darken/shift ember (use `--ember-deep`) and keep the existing translate + box-shadow.
-- Audit every use of `--neon`. It may remain as: the "Now Booking" status dot, section eyebrow accents, and text highlights. It may **not** be a button background or button hover.
-- `--haze` (#6B5BFF) is defined at line 10 and effectively unused. Either delete the variable or deploy it deliberately (e.g. as the FAQ section accent). Pick one, don't leave it dangling.
-
----
-
-## TASK 9 — Verification pass
-
-After all tasks:
-1. `npm run build` passes clean.
-2. `grep -rn '—' src/pages src/components` returns **zero** results in user-facing copy.
-3. `grep -rni 'where you are' src/` returns at most 1 result.
-4. Every `href` that says "Book" resolves to a page containing an actual form.
-5. Test at 375px: nav hamburger opens and closes, sticky CTA bar is visible and doesn't overlap the footer, the booking form is fully usable.
-6. Keyboard-only pass: tab through the booking form and the mobile nav. All focus states visible.
-7. Submit the form on a Netlify deploy preview and confirm the submission lands in the Netlify Forms dashboard and that `/thanks` renders.
-8. Confirm no invented names, quotes, or credentials were added. Every gap should be a visible `TODO(jonathan):`.
+1. `npm run build` passes.
+2. `grep -rn '—' src/` returns zero.
+3. `grep -rn 'href="TODO' src/ dist/` returns zero.
+4. **Read every `<h1>`, `<h2>`, and `<h3>` on the site out loud and ask "so what does that mean?"** If the answer isn't immediately obvious from the words alone, it isn't done.
+5. Confirm no `Two Words. Two More Words.` fragment headlines remain outside the ones explicitly kept in this spec.
+6. Confirm no new facts, names, numbers, or claims were invented. Any gap is a visible `TODO(jonathan):`.
